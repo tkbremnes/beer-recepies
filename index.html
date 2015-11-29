@@ -5,11 +5,19 @@
     <title>Hello React</title>
 
     <!-- TODO: clean this -->
-    <script type="text/javascript" src="./scripts/lib/brauhaus-beerxml.min.js"></script>
   </head>
   <body>
-    <div id="container">
+    <header class="main">
+      This is an offline-first recipe database
+    </header>
 
+    <div id="unloaded">This text should not be changed</div>
+    <div id="loaded">This text should be changed</div>
+
+    <div id="container"></div>
+
+    <script src="./scripts/offline/offline.js"></script>
+    <script src="./scripts/online/online.js"></script>
     <script src="bundle.js"></script>
   </body>
 </html>

@@ -105,4 +105,5 @@ const staticRecipes = [
   }
 ]
 
+console.log('rawr')
 React.render(<RecipeList recipes={staticRecipes} />, document.getElementById('container'));
