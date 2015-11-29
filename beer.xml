@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RECIPES>
+  <RECIPE>
+    <VERSION>1</VERSION>
+    <NAME>Aramis Saison</NAME>
+    <TYPE>Extract</TYPE>
+
+    <STYLE></STYLE>
+
+    <BREWER>danielgtaylor</BREWER>
+    <BATCH_SIZE>18.92705</BATCH_SIZE>
+    <BOIL_SIZE>11.35623</BOIL_SIZE>
+    <EFFICIENCY>75</EFFICIENCY>
+
+    <HOPS>
+      <HOP>
+        <VERSION>1</VERSION>
+        <NAME>Aramis hops</NAME>
+        <ALPHA>8.1</ALPHA>
+        <AMOUNT>0.0212615166549</AMOUNT>
+        <AMOUNT_IS_WEIGHT>TRUE</AMOUNT_IS_WEIGHT>
+        <USE>Boil</USE>
+        <TIME>60</TIME>
+        <FORM>Pellet</FORM>
+      </HOP>
+      <HOP>
+        <VERSION>1</VERSION>
+        <NAME>Aramis hops</NAME>
+        <ALPHA>8.1</ALPHA>
+        <AMOUNT>0.00708717221828</AMOUNT>
+        <AMOUNT_IS_WEIGHT>TRUE</AMOUNT_IS_WEIGHT>
+        <USE>Boil</USE>
+        <TIME>5</TIME>
+        <FORM>Pellet</FORM>
+      </HOP>
+    </HOPS>
+
+    <FERMENTABLES>
+      <FERMENTABLE>
+        <VERSION>1</VERSION>
+        <NAME>Munich liquid extract</NAME>
+        <AMOUNT>2.26795</AMOUNT>
+        <YIELD>75.7346258709</YIELD>
+        <COLOR>10</COLOR>
+        <ADD_AFTER_BOIL>FALSE</ADD_AFTER_BOIL>
+      </FERMENTABLE>
+      <FERMENTABLE>
+        <VERSION>1</VERSION>
+        <NAME>Wheat liquid extract</NAME>
+        <AMOUNT>1.36077</AMOUNT>
+        <YIELD>75.7346258709</YIELD>
+        <COLOR>3</COLOR>
+        <ADD_AFTER_BOIL>FALSE</ADD_AFTER_BOIL>
+      </FERMENTABLE>
+      <FERMENTABLE>
+        <VERSION>1</VERSION>
+        <NAME>Pilsner malt (steeped)</NAME>
+        <AMOUNT>0.226795</AMOUNT>
+        <YIELD>73.5707794175</YIELD>
+        <COLOR>1</COLOR>
+        <ADD_AFTER_BOIL>FALSE</ADD_AFTER_BOIL>
+      </FERMENTABLE>
+      <FERMENTABLE>
+        <VERSION>1</VERSION>
+        <NAME>Caramunich (steeped)</NAME>
+        <AMOUNT>0.226795</AMOUNT>
+        <YIELD>75.7346258709</YIELD>
+        <COLOR>34</COLOR>
+        <ADD_AFTER_BOIL>FALSE</ADD_AFTER_BOIL>
+      </FERMENTABLE>
+      <FERMENTABLE>
+        <VERSION>1</VERSION>
+        <NAME>Aromatic (steeped)</NAME>
+        <AMOUNT>0.1133975</AMOUNT>
+        <YIELD>73.5707794175</YIELD>
+        <COLOR>19</COLOR>
+        <ADD_AFTER_BOIL>FALSE</ADD_AFTER_BOIL>
+      </FERMENTABLE>
+    </FERMENTABLES>
+
+    <MISCS>
+    </MISCS>
+
+    <YEASTS>
+      <YEAST>
+        <VERSION>1</VERSION>
+        <NAME>WLP560 - Classic Saison Ale Blend</NAME>
+        <TYPE>Ale</TYPE>
+        <FORM>Liquid</FORM>
+        <ATTENUATION>84</ATTENUATION>
+      </YEAST>
+    </YEASTS>
+  </RECIPE>
+</RECIPES>
