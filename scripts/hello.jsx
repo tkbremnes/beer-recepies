@@ -1,5 +1,5 @@
 import React from 'react';
-import Brauhaus from 'brauhaus';
+import CreateRecipeView from './CreateRecipeView.jsx';
 
 class RecipeList extends React.Component {
   render() {
@@ -30,137 +30,6 @@ class Recipe extends React.Component {
           </tbody>
         </table>
       </article>
-  }
-}
-
-class CreateRecipeView extends React.Component {
-  handleSubmit(e) {
-    e.preventDefault();
-    console.log(e);
-
-    const form = e.target;
-    const efficiency = 78;
-
-    let r = new Brauhaus.Recipe({
-      name: form[0].value,
-      description: 'A new test beer using Brauhaus.js!',
-      batchSize: 20.0,
-      boilSize: 10.0,
-    });
-
-    r.add('fermentable', {
-      weight: form[1].value / 1000,
-      color: form[2].value,
-      name: form[3].value,
-      yield: efficiency,
-    });
-
-    r.add('fermentable', {
-      weight: form[4].value / 1000,
-      color: form[5].value,
-      name: form[6].value,
-      yield: efficiency,
-    });
-
-    r.add('hop', {
-      name: form[7].value,
-      weight: form[8].value / 1000,
-      aa: form[9].value,
-      use: form[10].value,
-      form: form[11].value
-    });
-
-    r.add('yeast', {
-      name: form[12].value,
-      type: form[13].value,
-      form: form[14].value,
-      attenuation: form[15].value,
-    });
-
-    r.mash = new Brauhaus.Mash({
-      name: 'My mash',
-      ph: 5.4
-    });
-
-    r.mash.addStep({
-      name: 'Saccharification',
-      type: 'Infusion',
-      time: 60,
-      temp: 68,
-      waterRatio: 2.75,
-    });
-
-    r.calculate();
-    console.log(r)
-  };
-
-  render() {
-    return <div className="card main-view"><form onSubmit={ this.handleSubmit }>
-      <input type="text" placeholder="Name of brew" className="beer-name-input"></input>
-
-      <div className="recipe-type-wrapper">
-        <p>Fermentables</p>
-
-        <div className="recipe-row">
-          <input type="text" placeholder="weight" className="weight-input five-digit"></input>
-          <input type="text" placeholder="name" className="fill-width"></input>
-          <input type="text" placeholder="color" className="three-digit"></input>
-        </div>
-
-        <div className="recipe-row">
-          <input type="text" placeholder="weight" className="weight-input five-digit"></input>
-          <input type="text" placeholder="name" className="fill-width"></input>
-          <input type="text" placeholder="color" className="three-digit"></input>
-        </div>
-      </div>
-
-      <div className="recipe-type-wrapper">
-        <p>Hops</p>
-
-        <div className="recipe-row">
-
-          <input type="text" placeholder="weight" className="three-digit"></input>
-          <input type="text" placeholder="name" className="fill-width"></input>
-          <input type="text" placeholder="aa" className="two-digit"></input>
-
-          <select name="select">
-            <option value="boil">Boil</option>
-            <option value="dry">Dry</option>
-          </select>
-
-          <select name="select">
-            <option value="pellets">Pellets</option>
-            <option value="whole">Whole cone</option>
-          </select>
-        </div>
-      </div>
-
-      <div className="recipe-type-wrapper">
-        <p>Yeast</p>
-
-        <div className="recipe-row">
-
-          <input type="text" placeholder="name" className="fill-width"></input>
-
-          <select name="select">
-            <option value="ale">Ale</option>
-            <option value="lager">Lager</option>
-            <option value="other">Other</option>
-          </select>
-
-          <select name="select">
-            <option value="liquid">Liquid</option>
-            <option value="dry">Dry</option>
-          </select>
-
-          <input type="text" placeholder="attenuation" className="two-digit"></input>
-        </div>
-      </div>
-
-      <div>
-        <input type="submit" value="Save"></input>
-      </div>
-    </form></div>
   }
 }
 
@@ -283,5 +152,5 @@ const staticRecipes = [
 
 // React.render(<RecipeList recipes={staticRecipes} />, document.getElementById('container'));
 // React.render(<BeerView recipe={staticRecipes[0]} />, document.getElementById('container'));
-// React.render(<CreateRecipeView />, document.getElementById('container'));
-React.render(<RecipeScraper />, document.getElementById('container'));
+React.render(<CreateRecipeView />, document.getElementById('container'));
+// React.render(<RecipeScraper />, document.getElementById('container'));
