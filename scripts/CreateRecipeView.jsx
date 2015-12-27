@@ -1,73 +1,69 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import Brauhaus from 'brauhaus';
 
-import FermentablesRow from './FermentablesRow.jsx';
-import SpicesRow from './SpicesRow.jsx';
+import { connect } from 'react-redux'
+
+import Fermentables from './Fermentables.jsx';
+import Spices from './Spices.jsx';
 import YeastRow from './YeastRow.jsx';
+import TotalWeight from './TotalWeight.jsx';
 
 class CreateRecipeView extends React.Component {
-  handleSubmit(e) {
+  constructor(props) {
+    super(props);
+    this.dispatcher = this.dispatcher.bind(this);
+    this.saveRecipe = this.saveRecipe.bind(this);
+  }
+
+  saveRecipe(e) {
     e.preventDefault();
-
-    const form = e.target;
-    const efficiency = 78;
-
-    let r = new Brauhaus.Recipe({
-      name: form[0].value,
-      description: 'A new test beer using Brauhaus.js!',
-      batchSize: 20.0,
-      boilSize: 10.0,
-    });
-    // r.add('fermentable', {
-    //   weight: form[1].value / 1000,
-    //   color: form[2].value,
-    //   name: form[3].value,
-    //   yield: efficiency,
-    // });
-
-    // r.add('hop', {
-    //   name: form[7].value,
-    //   weight: form[8].value / 1000,
-    //   aa: form[9].value,
-    //   use: form[10].value,
-    //   form: form[11].value
-    // });
-
-    // r.add('yeast', {
-    //   name: form[12].value,
-    //   type: form[13].value,
-    //   form: form[14].value,
-    //   attenuation: form[15].value,
-    // });
-
-    r.mash = new Brauhaus.Mash({
-      name: 'My mash',
-      ph: 5.4
-    });
-
-    r.mash.addStep({
-      name: 'Saccharification',
-      type: 'Infusion',
-      time: 60,
-      temp: 68,
-      waterRatio: 2.75,
-    });
+    this.dispatcher({type: 'save_recipe'});
   };
 
+  dispatcher(event) {
+    this.props.dispatch(event);
+  }
+
   render() {
+    const {
+      dispatch,
+      fermentables,
+      fermentablesMeta
+    } = this.props;
+
     return <div className="card main-view"><form onSubmit={ this.handleSubmit }>
-      <input type="text" placeholder="Name of brew" className="beer-name-input recipe-input" tabIndex="1" autoFocus="true"></input>
+      <input
+        type="text"
+        placeholder="Name of brew"
+        className="beer-name-input recipe-input"
+        tabIndex="1"
+        autoFocus="true"
+      ></input>
+
+      <input
+        type="text"
+        placeholder="Type"
+        className="type-input recipe-input"
+      ></input>
 
       <div className="recipe-type-wrapper">
         <h1>Fermentables</h1>
 
-        <FermentablesRow></FermentablesRow>
+        <Fermentables
+          fermentables={
+            fermentables
+          }
+          onFermentableChange={ this.dispatcher }
+          onTotalWeightChange={ this.dispatcher }
+          onAddFermentable={ this.dispatcher }
+        ></Fermentables>
+        <TotalWeight weight={ fermentablesMeta.totalWeight }></TotalWeight>
       </div>
 
       <div className="recipe-type-wrapper">
         <h1>Hops</h1>
 
-        <SpicesRow></SpicesRow>
+        <Spices></Spices>
       </div>
 
       <div className="recipe-type-wrapper">
@@ -77,11 +73,29 @@ class CreateRecipeView extends React.Component {
       </div>
 
       <div>
-        <input type="submit" value="Save"></input>
+        <button onClick={ this.saveRecipe }>Save</button>
       </div>
     </form>
   </div>
   }
 }
 
-export default CreateRecipeView;
+
+// CreateRecipeView.propTypes = {
+//   fermentables: PropTypes.arrayOf(PropTypes.shape({
+//     name: PropTypes.string.isRequired,
+//     weight: PropTypes.string.isRequired,
+//     color: PropTypes.string.isRequired
+//   }).isRequired).isRequired,
+// }
+
+
+function select(state) {
+  return {
+    fermentables: state.fermentablesForId,
+    fermentablesMeta: state.fermentablesMetaForId
+  }
+}
+
+export default connect(select)(CreateRecipeView)
+

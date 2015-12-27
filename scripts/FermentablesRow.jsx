@@ -3,11 +3,6 @@ import React from 'react';
 class FermentablesRow extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      weight: '',
-      name: '',
-      color: ''
-    };
 
     this.handleOnBlur = this.handleOnBlur.bind(this);
     this.handleOnWeightChange = this.handleOnWeightChange.bind(this);
@@ -16,45 +11,68 @@ class FermentablesRow extends React.Component {
   }
 
   handleOnBlur() {
-    // store and calculate
-    console.log(this.state.weight, this.state.name, this.state.color)
+    // console.log(this.state.weight, this.state.name, this.state.color)
   }
 
-  handleOnWeightChange(event) {
-    this.setState({weight: event.target.value});
+  handleOnChange(updatedFermentable) {
+    updatedFermentable.id = this.props.fermentable.id;
+    this.props.onFermentableChange(undefined, updatedFermentable)
   }
 
-  handleOnNameChange(event) {
-    this.setState({name: event.target.value});
+  handleOnWeightChange(event) {
+    this.handleOnChange({
+      weight: event.target.value,
+      name: this.props.fermentable.name,
+      color: this.props.fermentable.color
+    });
+
+    this.props.onWeightChange();
   }
 
-  handleOnColorChange(event) {
-    this.setState({color: event.target.value});
+  handleOnNameChange(event) {
+    this.handleOnChange({
+      weight: this.props.fermentable.weight,
+      name: event.target.value,
+      color: this.props.fermentable.color
+    });
+  }
+
+  handleOnColorChange(event) {
+    this.handleOnChange({
+      weight: this.props.fermentable.weight,
+      name: this.props.fermentable.name,
+      color: event.target.value
+    });
   }
 
   render() {
     return <div className="recipe-row">
+      <div
+        className="weight-input-wrapper"
+      >
+        <input
+          type="text"
+          placeholder="Weight"
+          className="recipe-input weight-input five-digit"
+          value={ this.props.fermentable.weight }
+          onBlur={ this.handleOnBlur }
+          onChange={ this.handleOnWeightChange }
+        ></input>
+        <span className="denominator">g</span>
+      </div>
       <input
         type="text"
-        placeholder="Weight"
-        className="recipe-input weight-input five-digit"
-        value={ this.state.weight }
-        onBlur={ this.handleOnBlur }
-        onChange={ this.handleOnWeightChange }
-      ></input>
-      <input
-        type="text"
-        placeholder="name"
+        placeholder="Name"
         className="recipe-input fill-width"
-        value={ this.state.name }
+        value={ this.props.fermentable.name }
         onBlur={ this.handleOnBlur }
         onChange={ this.handleOnNameChange }
       ></input>
       <input
         type="text"
-        placeholder="color"
+        placeholder="Color"
         className="recipe-input three-digit"
-        value={ this.state.color }
+        value={ this.props.fermentable.color }
         onBlur={ this.handleOnBlur }
         onChange={ this.handleOnColorChange }
       ></input>

@@ -15,10 +15,14 @@
     "babel-preset-react": "^6.1.18",
     "brauhaus": "^1.1.1",
     "node-sass": "^3.4.2",
+    "redux-devtools": "^3.0.0",
     "sass-loader": "^3.1.2",
     "webpack": "^1.12.9"
   },
   "dependencies": {
-    "react": "^0.14.3"
+    "brauhaus-beerxml": "^1.0.0",
+    "react": "^0.14.3",
+    "react-redux": "^4.0.4",
+    "redux": "^3.0.5"
   }
 }

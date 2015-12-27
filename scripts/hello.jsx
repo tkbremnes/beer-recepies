@@ -1,7 +1,230 @@
 import React from 'react';
 import CreateRecipeView from './CreateRecipeView.jsx';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
-class RecipeList extends React.Component {
+import Brauhaus from 'brauhaus';
+require('brauhaus-beerxml');
+
+window.Brauhaus = Brauhaus;
+
+import { combineReducers } from 'redux'
+
+
+const Actions = {
+  FERMENTABLE_CHANGED: 'fermentable_changed',
+  CHANGE_FERMENTABLE_WEIGHT: 'change_fermentable_weight',
+  CHANGE_FERMENTABLE_NAME: 'change_fermentable_name',
+  CHANGE_FERMENTABLE_COLOR: 'change_fermentable_color',
+
+  SAVE_RECIPE: 'save_recipe',
+
+  TOTAL_WEIGHT_CHANGED: 'total_weight_changed',
+
+  ADD_FERMENTABLE: 'add_fermentable'
+}
+
+
+function fermentablesMetaForId(state, action, value) {
+    // todo, properly
+  if (!state) {
+    state = {
+      totalWeight: {SI: '3'}
+    }
+  }
+
+  switch (action.type) {
+    case Actions.TOTAL_WEIGHT_CHANGED: {
+      state.totalWeight = { SI: action.value };
+
+      return state;
+    }
+
+    default: {
+      return state;
+    }
+  }
+}
+
+function fermentablesForId(state, action, value) {
+  // todo, properly
+  if (!state) {
+    state = [
+      {
+        id: 0,
+        name: 'Maris Otter',
+        weight: 4000,
+        color: 5
+      }
+    ]
+  }
+
+  switch (action.type) {
+    case Actions.TOTAL_WEIGHT_CHANGED: {
+
+      return state;
+    }
+    case Actions.ADD_FERMENTABLE:
+
+      return [
+        ...state,
+        {
+          id: Math.round(Math.random()*4000), // todo
+          name: '',
+          weight: '',
+          color: ''
+        }
+      ]
+
+      return state;
+    case Actions.FERMENTABLE_CHANGED: {
+      // TODO! COPY better
+      var _fermentables = [];
+      state.forEach(function (_f) {
+        if (_f.id === action.value.id) {
+          console.table(action.value);
+          _fermentables.push(action.value);
+        }
+        else {
+          _fermentables.push({
+            id: _f.id,
+            weight: _f.weight,
+            name: _f.name,
+            color: _f.color
+          });
+        }
+      });
+
+      return _fermentables;
+    }
+
+    default: {
+      return state
+    }
+  }
+}
+
+function recipe(state, action, value) {
+  if (!state) {
+    return {};
+  }
+
+  switch (action.type) {
+    case Actions.SAVE_RECIPE: {
+      function getRecipeForId(_storeState, _id) {
+        // todo
+        var res = {
+          name: 'todo',
+          description: 'also todo',
+
+          fermentables: _storeState.fermentablesForId,
+          spices: [],
+          yeasts: []
+        };
+        return res;
+      }
+
+      console.log('saving...');
+
+      // should get id
+      var recipe = getRecipeForId(store.getState(), action.id);
+      console.log(recipe);
+
+      // from brewMeta
+      var name = recipe.name;
+      var description = recipe.description;
+
+      // from breweryMeta
+      var batchSize = 20.0;
+      var boilSize = 10.0;
+      const efficiency = 78;
+      const phLevel = 5.4;
+
+      let r = new Brauhaus.Recipe({
+        name: name,
+        description: description,
+        batchSize: boilSize,
+        boilSize: boilSize,
+      });
+
+      // add fermentables
+      recipe.fermentables.forEach(_f => {
+        r.add('fermentable', {
+          weight: _f.weight,
+          color: _f.color,
+          name: _f.name,
+          efficiency: efficiency
+        });
+      });
+
+      // add spices
+      recipe.spices.forEach(_s => {
+        r.add('hop', {
+          name: _s.name,
+          weight: _s.weight,
+          aa: _s.aa,
+          use: _s.use,
+          form: _s.form
+        })
+      });
+
+      // add yeasts
+      recipe.yeasts.forEach(_y => {
+        r.add('yeast', {
+          name: _y.name,
+          type: _y.type,
+          form: _y.form,
+          attenuation: _y.attenuation,
+        });
+      });
+
+      r.mash = new Brauhaus.Mash({
+        name: 'My mash',
+        ph: phLevel
+      });
+
+      r.mash.addStep({
+        name: 'Saccharification',
+        type: 'Infusion',
+        time: 60,
+        temp: 68,
+        waterRatio: 2.75,
+      });
+
+      console.log(r.toBeerXml());
+
+      return state;
+    }
+
+    default: {
+      return state;
+    }
+  }
+}
+
+const brewStore = combineReducers({
+  fermentablesForId,
+  fermentablesMetaForId,
+  recipe
+});
+
+
+let store = createStore(brewStore);
+
+store.subscribe(function () {
+  // console.table(store.getState().fermentables);
+  // console.log(store.getState().fermentablesMeta);
+});
+
+
+
+
+
+
+
+
+
+class RecipeList extends React.Component {
   render() {
     let recipes = [];
 
@@ -9,7 +232,7 @@ class RecipeList extends React.Component {
       recipes.push(<Recipe recipe={recipe} key={pos} />);
     });
 
-    return <div> { recipes } </div>
+    return <div> { recipes } </div>
   }
 }
 
@@ -150,7 +373,15 @@ const staticRecipes = [
   }
 ]
 
+let rootElement = document.getElementById('container')
+React.render(
+  <Provider store={ store }>
+    <CreateRecipeView />
+  </Provider>,
+  rootElement
+)
+
 // React.render(<RecipeList recipes={staticRecipes} />, document.getElementById('container'));
 // React.render(<BeerView recipe={staticRecipes[0]} />, document.getElementById('container'));
-React.render(<CreateRecipeView />, document.getElementById('container'));
+// React.render(<CreateRecipeView store={ store } />, document.getElementById('container'));
 // React.render(<RecipeScraper />, document.getElementById('container'));

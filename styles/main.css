@@ -50,6 +50,8 @@ main.viewport {
   background: #AA7722;
   background: #009900;
   background: #DDEEDD;
+
+  background: #fafafa;
 }
 
 .nav-item {
@@ -148,10 +150,27 @@ nav.main ul {
   width: auto;
   margin-bottom: .5em;
 }
+
+.recipe-row .weight-input-wrapper {
+  position: relative;
+  cursor: text;
+}
+.recipe-row .recipe-input.weight-input {
+  padding-right: 10px;
+}
+.recipe-row .weight-input-wrapper .denominator {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  line-height: 34px;
+  width: 10px;
+  text-align: right;
+}
+
 .recipe-row p {
   margin: 0;
 }
-
 .recipe-row .recipe-input {
   padding: 0;
   margin: 0;
@@ -159,6 +178,16 @@ nav.main ul {
   border-right: 1px solid rgba(0, 0, 0, .12);
   padding: 8px 8px 4px;
   font-size: 1em;
+
+  /*cursor: pointer;*/
+}
+
+.recipe-row .recipe-input:focus,
+.recipe-row .recipe-input:hover {
+  /*box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, .3) inset;*/
+}
+.recipe-row .recipe-input:focus {
+  cursor: inherit;
 }
 
 .recipe-input.two-digit {
