@@ -5,10 +5,9 @@ import { Router, Route, Link } from 'react-router'
 
 import { fetchRecipes } from './Actions';
 
-import { RecipeListHeader } from './RecipeListHeader.jsx';
-
-// import { RecipeListFooter } from './RecipeListFooter.jsx';
-// import { RecipeListItem } from './RecipeListItem.jsx';
+import RecipeListHeader from './RecipeListHeader.jsx';
+import RecipeListFooter from './RecipeListFooter.jsx';
+import RecipeListItem from './RecipeListItem.jsx';
 
 import ListItem from 'material-ui/lib/lists/list-item';
 
@@ -21,26 +20,6 @@ import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
 import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
 
 import TextField from 'material-ui/lib/text-field';
-
-class RecipeListItem extends React.Component {
-  render() {
-    const abv = this.props.recipe.abv && this.props.recipe.abv.toPrecision(2);
-    const recipeUrl = `/recipes/${this.props.recipe.id}`
-
-    let className = "recipe-item clickable";
-    if (this.props.isSelected) {
-      className += " selected"
-    }
-
-    return <article
-      className={ className }
-      onClick={ this.props.onClick }
-      >
-        <header>{ this.props.recipe.name }</header>
-        <p className="subtext">{ abv }% { this.props.recipe.style }</p>
-      </article>
-  }
-}
 
 class RecipeList extends React.Component {
   constructor(props) {
@@ -85,21 +64,16 @@ class RecipeList extends React.Component {
       });
       return res;
     }
+      // <Toolbar style={ Styles.ListHeader }>
+      //   <IconButton tooltip="Sort">
+      //     <FontIcon className="muidocs-icon-custom-sort"/>
+      //   </IconButton>
+      // </Toolbar>
 
     return <div className="master">
-      <Toolbar style={ Styles.ListHeader }>
-        <IconButton tooltip="Sort">
-          <FontIcon className="muidocs-icon-custom-sort"/>
-        </IconButton>
-      </Toolbar>
-
+      <RecipeListHeader />
       <div className="recipe-list"> { getRecipesDom(recipes) } </div>
-
-      <Toolbar style={ Styles.ListFooter }>
-        <TextField
-          hintText="Search" />
-      </Toolbar>
-
+      <RecipeListFooter />
     </div>
   }
 }
@@ -111,4 +85,3 @@ function select(state) {
 }
 
 export default connect(select)(RecipeList)
-

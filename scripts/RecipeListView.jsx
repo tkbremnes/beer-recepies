@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import { render } from 'react-dom';
 
 import { connect } from 'react-redux';
@@ -8,6 +8,8 @@ import { fetchRecipes, selectRecipe } from './Actions';
 
 import RecipeList from './RecipeList.jsx';
 import RecipeListDetail from './RecipeListDetail.jsx';
+import RecipeListHeader from './RecipeListHeader.jsx';
+
 
 class RecipeListView extends React.Component {
   constructor(props) {

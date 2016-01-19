@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import { render } from 'react-dom';
 
 import Brauhaus from 'brauhaus';
@@ -8,6 +8,7 @@ import { Router, Route, Link } from 'react-router'
 
 import { fetchRecipes } from './Actions';
 import Paper from 'material-ui/lib/paper';
+import Fermentables from './RecipeDetail/Fermentables.jsx';
 
 import Colors from 'material-ui/lib/styles/colors';
 
@@ -71,7 +72,7 @@ class RecipeListDetail extends React.Component {
     const {
       recipes,
       selectedRecipeId
-    } = this.props
+    } = this.props;
 
     const recipe = this.getRecipeFromId(selectedRecipeId);
     const fermentables = this.getFermentablesFromId(selectedRecipeId);
@@ -81,31 +82,6 @@ class RecipeListDetail extends React.Component {
     const abv = recipe.abv && recipe.abv.toPrecision(2);
     const ibu = recipe.ibu && Math.floor(recipe.ibu);
 
-    function renderFermentables(ingredients) {
-      if (!ingredients || !ingredients.forEach) {
-        return;
-      }
-
-      const tableBody = ingredients.map((ingredient, index) => {
-        const {
-          weight,
-          name,
-          color
-        } = ingredient;
-
-        return <tr key={ index }>
-          <td className="right-aligned">{ Math.round(weight * 1000) }g</td>
-          <td className="ingredient-name">{ name }</td>
-          <td className="right-aligned">{ color } °L</td>
-        </tr>
-      });
-
-      return <table>
-        <tbody>
-          { tableBody }
-        </tbody>)
-      </table>
-    }
     function renderSpices(ingredients) {
       if (!ingredients || !ingredients.forEach) {
         return;
@@ -229,7 +205,7 @@ class RecipeListDetail extends React.Component {
         </header>
 
         <h3>Fermentables</h3>
-        { renderFermentables(fermentables) }
+        <Fermentables fermentables={ fermentables } />
 
         <h3>Hops</h3>
         { renderSpices(spices) }
