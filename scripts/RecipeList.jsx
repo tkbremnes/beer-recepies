@@ -87,7 +87,6 @@ class RecipeList extends React.Component {
     }
 
     return <div className="master">
-
       <Toolbar style={ Styles.ListHeader }>
         <IconButton tooltip="Sort">
           <FontIcon className="muidocs-icon-custom-sort"/>

@@ -11,7 +11,6 @@ import Paper from 'material-ui/lib/paper';
 
 import Colors from 'material-ui/lib/styles/colors';
 
-
 class RecipeListDetail extends React.Component {
   constructor(props) {
     super(props);
@@ -87,88 +86,72 @@ class RecipeListDetail extends React.Component {
         return;
       }
 
-      let res = [];
-      ingredients.forEach(function (ingredient, pos) {
-        const weight = Math.floor(ingredient.weight * 1000);
+      const tableBody = ingredients.map((ingredient, index) => {
+        const {
+          weight,
+          name,
+          color
+        } = ingredient;
 
-        res.push(<tr key={pos}>
-          <td className="right-aligned">
-           { weight }g
-          </td>
-          <td className="ingredient-name">
-            { ingredient.name }
-          </td>
-          <td
-            className="right-aligned"
-          >
-            { ingredient.color } °L
-          </td>
-        </tr>)
-      })
+        return <tr key={ index }>
+          <td className="right-aligned">{ Math.round(weight * 1000) }g</td>
+          <td className="ingredient-name">{ name }</td>
+          <td className="right-aligned">{ color } °L</td>
+        </tr>
+      });
+
       return <table>
-      <tbody>
-        { res }
-      </tbody></table>;
+        <tbody>
+          { tableBody }
+        </tbody>)
+      </table>
     }
     function renderSpices(ingredients) {
       if (!ingredients || !ingredients.forEach) {
         return;
       }
 
-      let res = [];
-      ingredients.forEach(function (ingredient, pos) {
-        const weight = Math.floor(ingredient.weight * 1000);
+      const tableBody = ingredients.map((ingredient, index) => {
+        const {
+          weight, name, aa
+        } = ingredient;
 
-        res.push(<tr key={pos}>
-          <td className="right-aligned">
-           { weight }g
-          </td>
-          <td className="ingredient-name">
-            { ingredient.name }
-          </td>
-          <td className="right-aligned">
-            { ingredient.aa }%
-          </td>
-        </tr>)
-      })
+        if (aa === 0) {
+          return;
+        }
+
+        return <tr key={ index }>
+          <td className="right-aligned">{ Math.floor(weight * 1000) }g</td>
+          <td className="ingredient-name">{ name }</td>
+          <td className="right-aligned">{ aa.toPrecision(2) }%</td>
+        </tr>
+      });
+
       return <table>
       <tbody>
-        { res }
+        { tableBody }
       </tbody></table>;
     }
+
     function renderYeasts(ingredients) {
       if (!ingredients || !ingredients.forEach) {
         return;
       }
 
-      let res = [];
-      ingredients.forEach(function (ingredient, pos) {
-        res.push(<tr key={pos}>
-          <td>
-            { ingredient.name }
-          </td>
-          <td>
-            { ingredient.type }
-          </td>
-          <td>
-            { ingredient.form }
-          </td>
-          <td>
-            { ingredient.attenuation }
-          </td>
-        </tr>)
-      })
-      return <table>
-      <thead>
-        <tr>
-          <td>Weight</td>
-          <td>Type</td>
-          <td>Form</td>
-          <td>Attenuation</td>
+      const tableBody = ingredients.map((ingredient, index) => {
+        const {
+          name, type, form
+        } = ingredient;
+
+        return <tr key={ index }>
+          <td>{ name }</td>
+          <td>({ form })</td>
         </tr>
-      </thead>
+      });
+
+      return <table>
       <tbody>
-        { res }
+        { tableBody }
       </tbody></table>;
     }
 
@@ -216,7 +199,7 @@ class RecipeListDetail extends React.Component {
       },
 
       RecipeDetailWrapper: {
-        backgroundColor: Colors.teal100
+        backgroundColor: Colors.amberA100
       },
 
       RecipeDetail: {
@@ -224,6 +207,8 @@ class RecipeListDetail extends React.Component {
         padding: '.5em 1em'
       }
     }
+
+    // { renderFermentables(fermentables) }
 
     return <div
       className="recipe-detail detail"
