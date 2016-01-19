@@ -64,6 +64,7 @@ function normalize(beerXml) {
       secondaryTemp: recipe.secondaryTemp,
       tertiaryDays: recipe.tertiaryDays,
 
+      style: recipe.style.name,
       id: id // todo!
     };
 

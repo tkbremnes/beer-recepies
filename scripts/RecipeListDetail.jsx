@@ -174,8 +174,7 @@ class RecipeListDetail extends React.Component {
 
     const {
       name,
-      author,
-      beerStyle
+      author
     } = recipe;
 
     const color = recipe.color && Math.round(recipe.color);
@@ -189,6 +188,8 @@ class RecipeListDetail extends React.Component {
         letter === 'u' ||
         letter === 'y')
     }
+
+    const beerStyle = recipe.style;
     let indefArticle = 'A';
     if (beerStyle && isVowel(beerStyle[0])) {
       indefArticle = 'An';
@@ -223,6 +224,8 @@ class RecipeListDetail extends React.Component {
         padding: '.5em 1em'
       }
     }
+
+    console.log(indefArticle, beerStyle);
 
     return <div
       className="recipe-detail detail"
