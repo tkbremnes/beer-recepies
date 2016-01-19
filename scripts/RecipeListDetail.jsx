@@ -216,7 +216,7 @@ class RecipeListDetail extends React.Component {
       },
 
       RecipeDetailWrapper: {
-        backgroundColor: Colors.teal500
+        backgroundColor: Colors.teal100
       },
 
       RecipeDetail: {
@@ -224,8 +224,6 @@ class RecipeListDetail extends React.Component {
         padding: '.5em 1em'
       }
     }
-
-    console.log(indefArticle, beerStyle);
 
     return <div
       className="recipe-detail detail"

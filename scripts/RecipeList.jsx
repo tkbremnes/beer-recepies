@@ -13,6 +13,8 @@ import { RecipeListHeader } from './RecipeListHeader.jsx';
 import ListItem from 'material-ui/lib/lists/list-item';
 
 import FontIcon from 'material-ui/lib/font-icon';
+import IconButton from 'material-ui/lib/icon-button';
+
 import Toolbar from 'material-ui/lib/toolbar/toolbar';
 import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
 import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
@@ -60,18 +62,23 @@ class RecipeList extends React.Component {
       selectedRecipeId
     } = this.props;
 
+    function getSecondaryTextFromRecipe(recipe) {
+      return `${recipe.style} (${recipe.abv.toPrecision(2)}%)`
+    }
 
-          // isSelected={ recipe.id === selectedRecipeId }
+
     var getRecipesDom = (_r) => {
       let res = [];
       if (!_r || !_r.recipes) {
         return;
       }
       _r.recipes.forEach((recipe, pos) => {
+        const isSelected = recipe.id === selectedRecipeId;
+
         res.push(<ListItem
           onClick={() => this.props.onSelectRecipe(recipe.id)}
           primaryText={ recipe.name }
-          secondaryText={ "Hello world" }
+          secondaryText={ getSecondaryTextFromRecipe(recipe) }
           recipe={ recipe }
           key={ pos } />
         );
@@ -79,14 +86,12 @@ class RecipeList extends React.Component {
       return res;
     }
 
-      // <footer className="recipe-list-footer">
-      //   <input id="search-field" type="search" placeholder="Filter by name or style" />
-      // </footer>
-
     return <div className="master">
 
       <Toolbar style={ Styles.ListHeader }>
-        <FontIcon className="muidocs-icon-custom-sort" />
+        <IconButton tooltip="Sort">
+          <FontIcon className="muidocs-icon-custom-sort"/>
+        </IconButton>
       </Toolbar>
 
       <div className="recipe-list"> { getRecipesDom(recipes) } </div>
