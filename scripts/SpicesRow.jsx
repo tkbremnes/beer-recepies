@@ -24,23 +24,23 @@ class SpicesRow extends React.Component {
     console.log(this.state.weight, this.state.name, this.state.color)
   }
 
-  handleOnWeightChange(event) {
+  handleOnWeightChange(event) {
     this.setState({weight: event.target.value});
   }
 
-  handleOnNameChange(event) {
+  handleOnNameChange(event) {
     this.setState({name: event.target.value});
   }
 
-  handleOnAaChange(event) {
+  handleOnAaChange(event) {
     this.setState({aa: event.target.value});
   }
 
-  handleOnTypeChange(event) {
+  handleOnTypeChange(event) {
     this.setState({color: event.target.value});
   }
 
-  handleOnUseChange(event) {
+  handleOnUseChange(event) {
     this.setState({use: event.target.value});
   }
 

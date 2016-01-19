@@ -57,6 +57,7 @@ class CreateRecipeView extends React.Component {
           onTotalWeightChange={ this.dispatcher }
           onAddFermentable={ this.dispatcher }
         ></Fermentables>
+
         <TotalWeight weight={ fermentablesMeta.totalWeight }></TotalWeight>
       </div>
 
