@@ -20,6 +20,10 @@ const template = [
 `    }`,
 `}`,
 ``,
+`${ componentName }.propTypes = {`,
+    ``,
+`}`,
+``,
 `export default ${ componentName };`
 ];
 
