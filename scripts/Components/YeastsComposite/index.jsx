@@ -1,12 +1,13 @@
 import React from 'react';
 
 import Yeasts from '../Yeasts/index.jsx';
+import Header from '../Header/index.jsx';
 
 class YeastsComposite extends React.Component {
     render() {
         return (
             <div>
-                <header>Yeasts</header>
+                <Header text="Yeasts" />
 
                 <Yeasts
                     yeasts={ this.props.yeasts }

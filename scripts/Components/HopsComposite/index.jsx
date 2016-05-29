@@ -2,6 +2,7 @@ import React from 'react';
 
 import Hops from '../Hops/index.jsx';
 import Calculate from '../Calculate/index.jsx';
+import Header from '../Header/index.jsx';
 
 function getTotalWeight(hops) {
     let total = 0;
@@ -17,7 +18,7 @@ class HopsComposite extends React.Component {
     render() {
         return (
             <div>
-                <header>Hops</header>
+                <Header text="Hops" />
 
                 <Hops
                     hops={ this.props.hops }

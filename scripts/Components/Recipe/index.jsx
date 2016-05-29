@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FermentablesThing from '../FermentablesThing/index.jsx';
+import FermentablesComposite from '../FermentablesComposite/index.jsx';
 import HopsComposite from '../HopsComposite/index.jsx';
 import YeastsComposite from '../YeastsComposite/index.jsx';
 
@@ -14,7 +14,7 @@ class Recipe extends React.Component {
 
         return (
             <div>
-                <FermentablesThing
+                <FermentablesComposite
                     fermentables={ fermentables }
                 />
 
