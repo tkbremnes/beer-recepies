@@ -2,12 +2,14 @@ import React from 'react';
 
 import FermentablesThing from '../FermentablesThing/index.jsx';
 import HopsComposite from '../HopsComposite/index.jsx';
+import YeastsComposite from '../YeastsComposite/index.jsx';
 
 class Recipe extends React.Component {
     render() {
         const {
             fermentables,
-            hops
+            hops,
+            yeasts
         } = this.props.recipe;
 
         return (
@@ -18,6 +20,10 @@ class Recipe extends React.Component {
 
                 <HopsComposite
                     hops={ hops }
+                />
+
+                <YeastsComposite
+                    yeasts={ yeasts }
                 />
             </div>
         )
