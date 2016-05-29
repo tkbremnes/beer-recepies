@@ -23,7 +23,7 @@ class Fermentables extends React.Component {
     }
 }
 
-Fermentables.proptypes = {
+Fermentables.propTypes = {
     fermentables: React.PropTypes.array.isRequired
 }
 
