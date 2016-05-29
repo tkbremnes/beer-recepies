@@ -1,4 +1,4 @@
-import Hello from './scripts/hello.jsx';
+import App from './scripts/App.jsx';
 
 
 // TODO: put this elsewhere
