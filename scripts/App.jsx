@@ -13,7 +13,7 @@ import Brauhaus from 'brauhaus';
 require('brauhaus-beerxml');
 
 import Logo from './Components/Logo/index.jsx';
-import Fermentables from './Components/Fermentables/index.jsx';
+import FermentablesThing from './Components/FermentablesThing/index.jsx';
 
 fetch('/ex/recipes.xml').then(res => res.text()).then(
   (xml) => {
@@ -53,7 +53,7 @@ class Root extends React.Component {
             width="100px"
             />
 
-            <Fermentables
+            <FermentablesThing
                 fermentables={ FermentablesList }
             />
         </div>
