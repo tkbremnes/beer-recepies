@@ -1,36 +1,57 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+
 import FermentablesComposite from '../FermentablesComposite/index.jsx';
 import HopsComposite from '../HopsComposite/index.jsx';
 import YeastsComposite from '../YeastsComposite/index.jsx';
 
+import { fetchRecipe } from '../../Utils/Actions';
+
 class Recipe extends React.Component {
+    constructor(props) {
+      super(props);
+    }
+
+    componentWillMount() {
+        this.props.dispatch(fetchRecipe());
+    }
+
+    componentDidMount() {
+        console.log('woaw');
+    }
+
     render() {
         const {
-            fermentables,
-            hops,
-            yeasts
-        } = this.props.recipe;
+            recipe
+        } = this.props;
+        console.log(this.props);
 
         return (
             <div>
                 <FermentablesComposite
-                    fermentables={ fermentables }
+                    fermentables={ recipe.fermentables }
                 />
 
                 <HopsComposite
-                    hops={ hops }
+                    hops={ recipe.hops }
                 />
 
                 <YeastsComposite
-                    yeasts={ yeasts }
+                    yeasts={ recipe.yeasts }
                 />
             </div>
         )
     }
 }
 Recipe.propTypes = {
-    recipe: React.PropTypes.object.isRequired
+    // recipe: React.PropTypes.object.isRequired
 }
 
-export default Recipe;
+function select(state) {
+    return {
+        recipe: state.recipe
+    }
+}
+
+export default connect(select)(Recipe);

@@ -3,6 +3,7 @@ import React from 'react';
 import Hops from '../Hops/index.jsx';
 import Calculate from '../Calculate/index.jsx';
 import Header from '../Header/index.jsx';
+import Loader from '../Loader/index.jsx';
 
 function getTotalWeight(hops) {
     let total = 0;
@@ -16,6 +17,10 @@ function getTotalWeight(hops) {
 
 class HopsComposite extends React.Component {
     render() {
+        if (!this.props.hops) {
+            return <Loader />;
+        }
+
         return (
             <div>
                 <Header text="Hops" />
@@ -33,7 +38,7 @@ class HopsComposite extends React.Component {
 }
 
 HopsComposite.propTypes = {
-    hops: React.PropTypes.array.isRequired
+    // hops: React.PropTypes.array.isRequired
 }
 
 export default HopsComposite;

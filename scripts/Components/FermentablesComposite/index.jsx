@@ -3,6 +3,7 @@ import React from 'react';
 import Fermentables from '../Fermentables/index.jsx';
 import Calculate from '../Calculate/index.jsx';
 import Header from '../Header/index.jsx';
+import Loader from '../Loader/index.jsx';
 
 function getTotalWeight(fermentables) {
     let total = 0;
@@ -16,6 +17,9 @@ function getTotalWeight(fermentables) {
 
 class FermentablesComposite extends React.Component {
     render() {
+        if (!this.props.fermentables) {
+            return <Loader />;
+        }
         return (
             <div>
                 <Header
@@ -35,7 +39,7 @@ class FermentablesComposite extends React.Component {
 }
 
 FermentablesComposite.propTypes = {
-    fermentables: React.PropTypes.array.isRequired
+    // fermentables: React.PropTypes.array.isRequired
 }
 
 export default FermentablesComposite;
