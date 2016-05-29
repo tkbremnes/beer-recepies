@@ -1,0 +1,3 @@
+#!/bin/bash
+webpack-dev-server --progress --colors --https --cert default-certificate.crt --key default-certificate.key --port 9090
+
