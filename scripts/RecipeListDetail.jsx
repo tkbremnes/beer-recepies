@@ -7,10 +7,7 @@ import { connect } from 'react-redux';
 import { Router, Route, Link } from 'react-router'
 
 import { fetchRecipes } from './Actions';
-import Paper from 'material-ui/lib/paper';
 import Fermentables from './RecipeDetail/Fermentables.jsx';
-
-import Colors from 'material-ui/lib/styles/colors';
 
 class RecipeListDetail extends React.Component {
   constructor(props) {
@@ -174,10 +171,6 @@ class RecipeListDetail extends React.Component {
         }
       },
 
-      RecipeDetailWrapper: {
-        backgroundColor: Colors.amberA100
-      },
-
       RecipeDetail: {
         margin: '1em 0 0 0',
         padding: '.5em 1em'
@@ -190,9 +183,6 @@ class RecipeListDetail extends React.Component {
       className="recipe-detail detail"
       style={ Styles.RecipeDetailWrapper }
     >
-      <Paper
-        style={ Styles.RecipeDetail }
-      >
         <header>
           <h1 className="name">{ name }</h1>
           <p className="style">{ indefArticle } <span className="text-link">{ beerStyle }</span> by { author }</p>
@@ -222,7 +212,6 @@ class RecipeListDetail extends React.Component {
         <p>Batchsize: { recipe.batchSize }</p>
         <p>Boilsize: { recipe.boilSize }</p>
         <p>Masheff: { recipe.mashEfficiency }%</p>
-      </Paper>
     </div>
   }
 }
@@ -234,4 +223,3 @@ function select(state) {
 }
 
 export default connect(select)(RecipeListDetail)
-

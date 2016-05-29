@@ -9,18 +9,6 @@ import RecipeListHeader from './RecipeListHeader.jsx';
 import RecipeListFooter from './RecipeListFooter.jsx';
 import RecipeListItem from './RecipeListItem.jsx';
 
-import ListItem from 'material-ui/lib/lists/list-item';
-
-import FontIcon from 'material-ui/lib/font-icon';
-import IconButton from 'material-ui/lib/icon-button';
-
-import Toolbar from 'material-ui/lib/toolbar/toolbar';
-import ToolbarGroup from 'material-ui/lib/toolbar/toolbar-group';
-import ToolbarSeparator from 'material-ui/lib/toolbar/toolbar-separator';
-import ToolbarTitle from 'material-ui/lib/toolbar/toolbar-title';
-
-import TextField from 'material-ui/lib/text-field';
-
 class RecipeList extends React.Component {
   constructor(props) {
     super(props);
@@ -54,13 +42,13 @@ class RecipeList extends React.Component {
       _r.recipes.forEach((recipe, pos) => {
         const isSelected = recipe.id === selectedRecipeId;
 
-        res.push(<ListItem
-          onClick={() => this.props.onSelectRecipe(recipe.id)}
-          primaryText={ recipe.name }
-          secondaryText={ getSecondaryTextFromRecipe(recipe) }
-          recipe={ recipe }
-          key={ pos } />
-        );
+        // res.push(<ListItem
+        //   onClick={() => this.props.onSelectRecipe(recipe.id)}
+        //   primaryText={ recipe.name }
+        //   secondaryText={ getSecondaryTextFromRecipe(recipe) }
+        //   recipe={ recipe }
+        //   key={ pos } />
+        // );
       });
       return res;
     }
