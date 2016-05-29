@@ -13,11 +13,11 @@ module.exports = {
         query: {
           presets: ['es2015', 'react']
         },
-        // {
-        //   test: /\.scss$/,
-        //   loaders: ["style", "css", "sass"]
-        // }
       }
     ]
   },
+  context: __dirname,
+  node: {
+      __filename: true
+  }
 };

@@ -28,16 +28,7 @@ class RecipeListView extends React.Component {
     } = this.props;
 
     return <div>
-      <RecipeList
-        selectedRecipeId={ uiState.selectedRecipeId }
-        recipes={recipes}
-        onSelectRecipe={id =>
-          dispatch(selectRecipe(id))
-        }
-      />
-      <RecipeListDetail
-        selectedRecipeId={ uiState.selectedRecipeId }
-      />
+      <p>Hello</p>
     </div>
   }
 }
@@ -50,4 +41,3 @@ function select(state) {
 }
 
 export default connect(select)(RecipeListView)
-
