@@ -1,0 +1,30 @@
+/* TODO: make reset sensible */
+
+html {
+    font-size: 12px;
+    font-family: Open Sans;
+}
+
+html,
+body,
+body main * {
+    background: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    line-height: 1em;
+    text-align: left;
+    cursor: default;
+    color: black;
+    font-size: 1em;
+
+    vertical-align: top;
+
+    box-sizing: border-box;
+    display: flex;
+}
+
+p {
+    margin: 0;
+}
