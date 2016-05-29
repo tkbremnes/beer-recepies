@@ -1,19 +1,18 @@
 function report() {
-    console.log('cache setup');
 }
 
 const cacheName = 'recipes';
 const filesToCache = [
-    '/',
-    '/offline.html',
-    '/images/beer.jpg'
+    // '/',
+    // '/offline.html',
+    // '/images/logo.png',
+    // '/scripts/Utils/DataStore/index.js'
 ]
 function setupCache(cache) {
     return cache.addAll(filesToCache);
 }
 
 self.addEventListener('install', (event) => {
-    console.log('installed');
 
     event.waitUntil(
         caches.open('recipes')
@@ -24,11 +23,9 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('fetch', (event) => {
     function handleResponse(response) {
-        console.log('handling response');
         return response || fetch(event.request);
     }
 
-    console.log(event.request.url);
 
     event.respondWith(
         caches.match(event.request)
