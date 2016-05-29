@@ -13,7 +13,7 @@ import Brauhaus from 'brauhaus';
 require('brauhaus-beerxml');
 
 import Logo from './Components/Logo/index.jsx';
-import FermentablesThing from './Components/FermentablesThing/index.jsx';
+import Recipe from './Components/Recipe/index.jsx';
 
 fetch('/ex/recipes.xml').then(res => res.text()).then(
   (xml) => {
@@ -26,23 +26,8 @@ fetch('/ex/recipes.xml').then(res => res.text()).then(
   }
 );
 
-const FermentablesList = [
-    {
-        name: "Maris Otter",
-        weight: 4500,
-        color: 5
-    },
-    {
-        name: "CaraPils",
-        weight: 200,
-        color: 12
-    },
-    {
-        name: "Wheat",
-        weight: 1500,
-        color: 55
-    }
-]
+import exampleRecipes from '../ex/recipes.js';
+const recipe = exampleRecipes.recipes[0];
 
 class Root extends React.Component {
   render() {
@@ -53,8 +38,8 @@ class Root extends React.Component {
             width="100px"
             />
 
-            <FermentablesThing
-                fermentables={ FermentablesList }
+            <Recipe
+                recipe={ recipe }
             />
         </div>
     )

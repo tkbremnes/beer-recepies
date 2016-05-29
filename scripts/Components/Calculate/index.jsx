@@ -7,5 +7,8 @@ class Calculate extends React.Component{
         )
     }
 }
+Calculate.propTypes = {
+    totalWeight: React.PropTypes.number.isRequired
+}
 
 export default Calculate;

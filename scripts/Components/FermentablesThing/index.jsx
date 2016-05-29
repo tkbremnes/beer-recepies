@@ -31,4 +31,8 @@ class FermentablesThing extends React.Component {
     }
 }
 
+FermentablesThing.propTypes = {
+    fermentables: React.PropTypes.array.isRequired
+}
+
 export default FermentablesThing;
