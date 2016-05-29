@@ -1,4 +1,6 @@
 import React from 'react';
+
+import SharedStyles from '../../Shared/Styles';
 import Fermentable from '../Fermentable/index.jsx';
 
 class Fermentables extends React.Component {
@@ -16,7 +18,7 @@ class Fermentables extends React.Component {
             });
         }
         return (
-            <div>
+            <div style={ SharedStyles.tableContainer }>
                 { doThing(this.props.fermentables) }
             </div>
         )

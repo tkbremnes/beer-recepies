@@ -1,5 +1,6 @@
 import React from 'react';
 
+import SharedStyles from '../../Shared/Styles';
 import Yeast from '../Yeast/index.jsx';
 
 class Yeasts extends React.Component {
@@ -16,7 +17,7 @@ class Yeasts extends React.Component {
         }
 
         return (
-            <div>
+            <div style={ SharedStyles.tableContainer }>
                 { doThing(this.props.yeasts) }
             </div>
         )

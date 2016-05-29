@@ -1,5 +1,6 @@
 import React from 'react';
 
+import SharedStyles from '../../Shared/Styles';
 import Hop from '../Hop/index.jsx';
 
 class Hops extends React.Component {
@@ -18,7 +19,7 @@ class Hops extends React.Component {
         }
 
         return (
-            <div>
+            <div style={ SharedStyles.tableContainer }>
                 { doThing(this.props.hops) }
             </div>
         )

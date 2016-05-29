@@ -1,9 +1,10 @@
 import React from 'react';
+import SharedStyles from '../../Shared/Styles.js';
 
 class Hop extends React.Component {
     render() {
         return (
-            <div>
+            <div style={ SharedStyles.tableRowContainer }>
                 <p>{ this.props.name }</p>
                 <p>{ this.props.weight }</p>
                 <p>{ this.props.color }</p>
