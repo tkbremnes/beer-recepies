@@ -3,6 +3,10 @@ import SharedStyles from '../../Shared/Styles.js';
 
 const styles = {
     container: SharedStyles.tableRowContainer,
+
+    name: SharedStyles.ingredient.name,
+    weight: SharedStyles.ingredient.weight,
+    color: SharedStyles.ingredient.color
 }
 
 class Fermentable extends React.Component {

@@ -4,6 +4,7 @@ import Fermentables from '../Fermentables/index.jsx';
 import Calculate from '../Calculate/index.jsx';
 import Header from '../Header/index.jsx';
 import Loader from '../Loader/index.jsx';
+import CreateFermentable from '../CreateFermentable/index.jsx';
 
 function getTotalWeight(fermentables) {
     let total = 0;
@@ -13,6 +14,12 @@ function getTotalWeight(fermentables) {
     });
 
     return total;
+}
+
+const testData = {
+    name: "test",
+    weight: 200,
+    color: 5
 }
 
 class FermentablesComposite extends React.Component {
@@ -30,16 +37,21 @@ class FermentablesComposite extends React.Component {
                     fermentables={ this.props.fermentables }
                 />
 
+                {/*<CreateFermentable
+                    onFermentableAdded={ this.props.onFermentableAdded }
+                />*/}
+
                 <Calculate
                     totalWeight={ getTotalWeight(this.props.fermentables) }
                 />
+
             </div>
         )
     }
 }
 
 FermentablesComposite.propTypes = {
-    // fermentables: React.PropTypes.array.isRequired
+    onFermentableAdded: React.PropTypes.func.isRequired
 }
 
 export default FermentablesComposite;

@@ -9,10 +9,11 @@ class Hops extends React.Component {
             return hops.map((hop, index) => {
                 return (
                     <Hop
-                    name={ hop.name }
-                    weight={ hop.weight }
-                    ibu={ hop.ibu }
-                    key={ index }
+                        name={ hop.name }
+                        weight={ hop.weight }
+                        time={ hop.time + '' }
+                        ibu={ hop.ibu }
+                        key={ index }
                     />
                 )
             });

@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk'
+import _ from 'underscore';
 
 import Actions from './Actions';
 window.Actions = Actions;
@@ -22,6 +23,12 @@ function recipe(state, action) {
     switch (action.type) {
         case 'receive_recipes': {
             return action.recipe;
+        }
+
+        case 'add_fermentable': {
+            const recipe = _.clone(state);
+            recipe.fermentables.push(action.fermentable);
+            return recipe;
         }
 
         default: {
