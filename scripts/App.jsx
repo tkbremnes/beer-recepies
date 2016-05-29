@@ -13,6 +13,7 @@ import Brauhaus from 'brauhaus';
 require('brauhaus-beerxml');
 
 import Logo from './Components/Logo/index.jsx';
+import Fermentable from './Components/Fermentable/index.jsx';
 
 fetch('/ex/recipes.xml').then(res => res.text()).then(
   (xml) => {
@@ -28,10 +29,18 @@ fetch('/ex/recipes.xml').then(res => res.text()).then(
 class Root extends React.Component {
   render() {
     return (
-        <Logo
+        <div>
+            <Logo
             height="100px"
             width="100px"
-        />
+            />
+
+            <Fermentable
+                name="Maris Otter"
+                weight={ 4500 }
+                color={ 5 }
+            />
+        </div>
     )
   }
 }
