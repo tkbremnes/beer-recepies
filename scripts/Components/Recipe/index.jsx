@@ -53,7 +53,12 @@ class Recipe extends React.Component {
                 <p>Mash temp: 67</p>
                 <p>Fermentation temp: 19</p>
                 <p>Total boil time: 90</p>
-                <p>Carb level: 2-2.5</p>
+
+                <hr />
+                <p>Source: <a href={ recipe.source }>BYO</a></p>
+                <p>Style: { recipe.style }</p>
+                <p>Carb level: {recipe.carbonation.from} - {recipe.carbonation.to}</p>
+                <hr />
 
                 <FermentablesComposite
                     onFermentableAdded={ this.onFermentableAdded }

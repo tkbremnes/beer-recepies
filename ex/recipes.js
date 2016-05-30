@@ -50,6 +50,11 @@ export default {
             "name": "Irish Red Ale",
             "id": 2,
             "source": "http://byo.com/mead/item/1868-irish-red-ale-style-profile",
+            "style": "Irish red ale",
+            "carbonation": {
+                from: 2,
+                to: 2.5
+            },
             "fermentables": [
                 {
                     weight: 4500,
