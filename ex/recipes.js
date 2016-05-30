@@ -2,6 +2,7 @@ export default {
     "recipes": [
         {
             "name": "Some beer name",
+            "id": 1,
             "fermentables": [
                 {
                     "name": "Maris Otter",
@@ -24,24 +25,65 @@ export default {
                     "name": "Hallertauer",
                     "weight": 132,
                     "time": 60,
-                    "ibu": 10
+                    "aa": 5
                 },
                 {
                     "name": "Citra",
                     "weight": 32,
                     "time": 15,
-                    "ibu": 40
+                    "aa": 10
                 },
                 {
                     "name": "Mandarina",
                     "weight": 22,
                     "time": 0,
-                    "ibu": 32
+                    "aa": 20
                 },
             ],
             "yeasts": [
                 {
                     "name": "WLP 1000"
+                }
+            ]
+        },
+        {
+            "name": "Irish Red Ale",
+            "id": 2,
+            "source": "http://byo.com/mead/item/1868-irish-red-ale-style-profile",
+            "fermentables": [
+                {
+                    weight: 4500,
+                    name: "Maris Otter Pale Malt",
+                    color: 5
+                },
+                {
+                    weight: 170,
+                    name: "Great Western crystal malt",
+                    color: 40
+                },
+                {
+                    weight: 170,
+                    name: "Great Western crystal malt",
+                    color: 120
+                },
+                {
+                    weight: 142,
+                    name: "Roasted barley",
+                    color: 300
+                }
+            ],
+            "hops": [
+                {
+                    name: "Kent Golding",
+                    type: "Pellets",
+                    weight: 30,
+                    time: 60,
+                    aa: 5
+                }
+            ],
+            "yeasts": [
+                {
+                    name: "White Labs WLP004 (Irish Ale)"
                 }
             ]
         }
