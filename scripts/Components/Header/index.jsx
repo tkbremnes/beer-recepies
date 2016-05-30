@@ -17,7 +17,7 @@ class Header extends React.Component {
 
         return (
             <header>
-                <h1 styles={ styles }>{ this.props.text }</h1>
+                <h1 style={ styles }>{ this.props.text }</h1>
             </header>
         )
     }

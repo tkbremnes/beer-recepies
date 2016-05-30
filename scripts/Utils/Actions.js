@@ -1,5 +1,5 @@
 import Recipes from '../../ex/recipes.js';
-const recipe = Recipes.recipes[0];
+const recipe = Recipes.recipes[1];
 
 function normalize(recipeJSON) {
     return recipeJSON;

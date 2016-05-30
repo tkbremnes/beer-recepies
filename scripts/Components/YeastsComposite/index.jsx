@@ -11,7 +11,10 @@ class YeastsComposite extends React.Component {
         }
         return (
             <div>
-                <Header text="Yeasts" />
+                <Header
+                    text="Yeasts"
+                    level={2}
+                />
 
                 <Yeasts
                     yeasts={ this.props.yeasts }

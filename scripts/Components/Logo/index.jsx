@@ -13,18 +13,24 @@ function getLogoPath(_filename, relativeLogoPath) {
 const logoPath = getLogoPath(__filename, '/assets/logo.png');
 
 const styles = {
-    imageRendering: 'pixelated'
+    imageRendering: 'pixelated',
+
+    backgroundColor: {
+        backgroundColor: '#333333'
+    }
 }
 
 class Logo extends React.Component {
     render() {
         return (
-            <img
-                src={ logoPath }
-                height={ this.props.height }
-                width={ this.props.width }
-                style={ styles }
-            />
+            <div style={ styles.backgroundColor }>
+                <img
+                    src={ logoPath }
+                    height={ this.props.height }
+                    width={ this.props.width }
+                    style={ styles }
+                />
+            </div>
         )
     }
 }

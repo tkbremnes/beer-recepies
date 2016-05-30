@@ -7,7 +7,7 @@ const styles = {
     name: SharedStyles.ingredient.name,
     weight: SharedStyles.ingredient.weight,
     time: SharedStyles.ingredient.color,
-    ibu: SharedStyles.ingredient.color
+    aa: SharedStyles.ingredient.color
 }
 
 class Hop extends React.Component {
@@ -17,7 +17,7 @@ class Hop extends React.Component {
                 <p style={ styles.name }>{ this.props.name }</p>
                 <p style={ styles.weight }>{ this.props.weight }g</p>
                 <p style={ styles.time }>{ this.props.time } min.</p>
-                <p style={ styles.ibu }>{ this.props.ibu } IBU</p>
+                <p style={ styles.aa }>{ this.props.aa }% AA</p>
             </div>
         )
     }
@@ -27,7 +27,7 @@ Hop.propTypes = {
     name: React.PropTypes.string.isRequired,
     weight: React.PropTypes.number.isRequired,
     time: React.PropTypes.string.isRequired,
-    ibu: React.PropTypes.number.isRequired
+    aa: React.PropTypes.number.isRequired
 };
 
 export default Hop;

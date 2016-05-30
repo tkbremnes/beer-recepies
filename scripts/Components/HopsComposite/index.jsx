@@ -23,7 +23,10 @@ class HopsComposite extends React.Component {
 
         return (
             <div>
-                <Header text="Hops" />
+                <Header
+                    text="Hops"
+                    level={2}
+                />
 
                 <Hops
                     hops={ this.props.hops }
