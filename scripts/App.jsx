@@ -5,7 +5,7 @@ import CreateRecipeView from './CreateRecipeView.jsx';
 import RecipeListView from './RecipeListView.jsx';
 import { Provider } from 'react-redux';
 
-import { Router, Route, Link, browserHistory } from 'react-router';
+import { Router, Route, browserHistory, Link } from 'react-router';
 
 import store from './Utils/Reducers';
 
@@ -26,6 +26,13 @@ class Root extends React.Component {
     )
   }
 }
+class About extends React.Component {
+    render() {
+        return(
+            <div>About</div>
+        )
+    }
+}
 
 window.addEventListener('keydown', function (event) {
   if (event.code === "KeyF" && event.metaKey) {
@@ -40,6 +47,10 @@ ReactDOM.render(
   <Provider store={ store }>
     <Router history={browserHistory}>
         <Route path="/" component={Root} />
+        <Route path="/aboutss" component={About} />
+        {/*<Route path="/recipes" component={Recipes}>*/}
+            <Route path="/recipe/:recipeId" component={Logo} />
+        {/*</Route>*/}
     </Router>
 
   </Provider>

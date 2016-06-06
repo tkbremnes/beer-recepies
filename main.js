@@ -28,7 +28,7 @@ function sendMessage(message) {
 
 
 // TODO: put this elsewhere
-if ('serviceWorker' in window.navigator) {
+function registerServiceWorker() {
     const serviceWorker = window.navigator.serviceWorker;
     serviceWorker.register('./service-worker.js')
         .then((serviceWorkerRegistration) => {
@@ -40,4 +40,5 @@ if ('serviceWorker' in window.navigator) {
                 // });
             });
         });
-};
+}
+// registerServiceWorker();

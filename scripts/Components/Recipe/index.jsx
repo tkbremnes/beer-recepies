@@ -16,9 +16,9 @@ import { fetchRecipe } from '../../Utils/Actions';
 
 const Styles ={
     container: {
-        maxWidth: "600px",
+        maxWidth: "640px",
         margin: "auto",
-        border: "1px solid"
+        padding: "0 20px"
     }
 }
 
@@ -45,30 +45,86 @@ class Recipe extends React.Component {
             recipe
         } = this.props;
 
+        const SubHeaderStyle = {
+            flavorText: {
+                display: "flex",
+                flexDirection: "row",
+                // textTransform: 'uppercase'
+
+            },
+            stats: {
+                stat: {
+                    value: {},
+                    desc: {}
+                }
+            },
+            container: {
+                // borderTop: "3px solid #000",
+                borderBottom: "3px solid #000",
+
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+
+                padding: '6px 0',
+            },
+            statsWrapper: {
+                display: 'flex',
+                flexDirection: 'row'
+            },
+            stat: {
+                width: '60px',
+                borderLeft: '2px solid #000'
+            },
+            desc: {
+                textAlign: 'center',
+            },
+            value: {
+                textAlign: 'center',
+            }
+        }
+
         return (
             <div style={ Styles.container }>
-                <Header
-                    text={ recipe.name }
-                />
+                <div style={ SubHeaderStyle.container }>
+                    <Header
+                        text={ recipe.name }
+                        uppercase={ true }
+                    />
+
+                    <div style={ SubHeaderStyle.statsWrapper }>
+                        <div style={ SubHeaderStyle.stat }>
+                            <div style={ SubHeaderStyle.desc }>ABV</div>
+                            <div style={ SubHeaderStyle.value }>5.4%</div>
+                        </div>
+                        <div style={ SubHeaderStyle.stat }>
+                            <div style={ SubHeaderStyle.desc }>IBU</div>
+                            <div style={ SubHeaderStyle.value }>25</div>
+                        </div>
+                        <div style={ SubHeaderStyle.stat }>
+                            <div style={ SubHeaderStyle.desc }>OG</div>
+                            <div style={ SubHeaderStyle.value }>1.054</div>
+                        </div>
+                    </div>
+                </div>
+                <p>Source: <Link href={ recipe.source } text={ "BYO" } /></p>
 
                 <BatchSize
                     value={ 20 }
                 />
-                <div>
-                    <p>Brewhouse efficiency</p>
-                </div>
-
-                <hr />
-
                 <p>Mash temp: <Temperature value={ 67 } /></p>
                 <p>Fermentation temp: <Temperature value={ 19 } /></p>
                 <p>Total boil time: 90 min</p>
-
-                <hr />
-                <p>Source: <Link href={ recipe.source } text={ "BYO" } /></p>
                 <p>Style: { recipe.style }</p>
                 <p>Carb level: {recipe.carbonation.from} - {recipe.carbonation.to}</p>
                 <hr />
+
+                <Header
+                    level={ 2 }
+                    text="Ingredients"
+                    uppercase={ true }
+                />
 
                 <FermentablesComposite
                     onFermentableAdded={ this.onFermentableAdded }

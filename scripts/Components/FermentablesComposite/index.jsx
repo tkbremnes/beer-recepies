@@ -31,7 +31,7 @@ class FermentablesComposite extends React.Component {
             <div>
                 <Header
                     text="Fermentables"
-                    level={ 2 }
+                    level={ 3 }
                 />
 
                 <Fermentables

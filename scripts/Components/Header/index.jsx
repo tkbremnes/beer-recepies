@@ -15,8 +15,12 @@ class Header extends React.Component {
             fontSize: headerSize
         }
 
+        if (this.props.uppercase) {
+            styles.textTransform = 'uppercase'
+        }
+
         return (
-            <header>
+            <header style={ { height: '100%' } }>
                 <h1 style={ styles }>{ this.props.text }</h1>
             </header>
         )

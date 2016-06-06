@@ -13,7 +13,7 @@ class YeastsComposite extends React.Component {
             <div>
                 <Header
                     text="Yeasts"
-                    level={2}
+                    level={ 3 }
                 />
 
                 <Yeasts

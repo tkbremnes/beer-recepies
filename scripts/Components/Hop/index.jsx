@@ -16,8 +16,8 @@ class Hop extends React.Component {
             <div style={ styles.container }>
                 <p style={ styles.name }>{ this.props.name }</p>
                 <p style={ styles.weight }>{ this.props.weight }g</p>
-                <p style={ styles.time }>{ this.props.time } min.</p>
                 <p style={ styles.aa }>{ this.props.aa }% AA</p>
+                <p style={ styles.time }>{ this.props.time } min.</p>
             </div>
         )
     }

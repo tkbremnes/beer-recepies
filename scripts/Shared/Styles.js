@@ -3,13 +3,17 @@ export default {
 
     tableRowContainer: {
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        padding: '8px 0',
+        borderBottom: '1px solid rgba(0, 0, 0, .2)'
     },
 
     tableContainer: {
+        borderTop: '2px solid #000',
         display: 'flex',
         flexDirection: 'column',
-        width: '300px'
+        padding: '0 8px 8px 8px',
+        backgroundColor: '#ededef'
     },
 
     ingredient: {
@@ -17,16 +21,25 @@ export default {
             order: 1,
             flexShrink: 0,
             textAlign: 'right',
-            width: '70px'
+            width: '70px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
         },
         name: {
             order: 2,
             flexGrow: 1,
-            flexShrink: 0
+            padding: '0 8px'
         },
         color: {
             order: 3,
-            flexShrink: 0
+            paddingRight: '8px',
+            flexShrink: 0,
+            textAlign: 'right',
+            width: '70px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
         },
     },
 

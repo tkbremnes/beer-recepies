@@ -25,7 +25,7 @@ class HopsComposite extends React.Component {
             <div>
                 <Header
                     text="Hops"
-                    level={2}
+                    level={ 3 }
                 />
 
                 <Hops
