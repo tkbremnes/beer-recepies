@@ -9,31 +9,22 @@ if (!process.argv[2]) {
 
 const componentName = process.argv[2];
 
-const template = [
-`import React from 'react';`,
-``,
-`class ${ componentName } extends React.Component {`,
-`    render() {`,
-`        return (`,
-`            `,
-`        )`,
-`    }`,
-`}`,
-``,
-`${ componentName }.propTypes = {`,
-    ``,
-`}`,
-``,
-`export default ${ componentName };`
-];
+const template = `import React from 'react';
 
-const templateString = (function templateToString(arrayOfStrings) {
-    let res = '';
-    arrayOfStrings.forEach((string) => {
-        res += `${ string }\n`;
-    });
-    return res;
-})(template);
+class ${ componentName } extends React.Component {
+    render() {
+        return (
+
+        )
+    }
+}
+
+${ componentName }.propTypes = {
+
+}
+
+export default ${ componentName };
+`;
 
 const path = `./scripts/Components/${ componentName }`;
 fs.exists(path, (componentExists) => {
@@ -43,7 +34,7 @@ fs.exists(path, (componentExists) => {
 
     fs.mkdir(path, () => {
 
-        fs.writeFile(`${ path }/index.jsx`, templateString, (err) => {
+        fs.writeFile(`${ path }/index.jsx`, template, (err) => {
             if (err) {
                 throw new Error('Could not write file');
             }
