@@ -20,9 +20,10 @@ body main * {
     font-size: 1em;
 
     vertical-align: top;
-
+    text-decoration: none;
     box-sizing: border-box;
-    display: flex;
+    /*display: flex;
+    flex-direction: column;*/
 }
 
 p {
