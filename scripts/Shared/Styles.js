@@ -28,5 +28,19 @@ export default {
             order: 3,
             flexShrink: 0
         },
+    },
+
+    // for color schemes
+    Color: {
+        paleAle: "#ffe92e",
+        lager: "#f2c509",
+        pilsner: "#f3921e",
+        wheatBeer: "#d46e1f",
+        goldenAle: "#de4718",
+        darkAle: "#630b11",
+        porter: "#4d0f0d",
+        stout: "#421100",
+        imperialAle: "#080808"
     }
+
 }
