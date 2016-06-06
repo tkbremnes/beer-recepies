@@ -9,8 +9,18 @@ import BatchSize from '../BatchSize/index.jsx';
 
 import Header from '../Header/index.jsx';
 import Loader from '../Loader/index.jsx';
+import Link from '../Link/index.jsx';
+import Temperature from '../Temperature/index.jsx';
 
 import { fetchRecipe } from '../../Utils/Actions';
+
+const Styles ={
+    container: {
+        maxWidth: "600px",
+        margin: "auto",
+        border: "1px solid"
+    }
+}
 
 class Recipe extends React.Component {
     constructor(props) {
@@ -28,7 +38,7 @@ class Recipe extends React.Component {
 
     render() {
         if(!this.props.recipe.name) {
-            return (<Loader></Loader>);
+            return (<Loader />);
         }
 
         const {
@@ -36,7 +46,7 @@ class Recipe extends React.Component {
         } = this.props;
 
         return (
-            <div>
+            <div style={ Styles.container }>
                 <Header
                     text={ recipe.name }
                 />
@@ -50,12 +60,12 @@ class Recipe extends React.Component {
 
                 <hr />
 
-                <p>Mash temp: 67</p>
-                <p>Fermentation temp: 19</p>
-                <p>Total boil time: 90</p>
+                <p>Mash temp: <Temperature value={ 67 } /></p>
+                <p>Fermentation temp: <Temperature value={ 19 } /></p>
+                <p>Total boil time: 90 min</p>
 
                 <hr />
-                <p>Source: <a href={ recipe.source }>BYO</a></p>
+                <p>Source: <Link href={ recipe.source } text={ "BYO" } /></p>
                 <p>Style: { recipe.style }</p>
                 <p>Carb level: {recipe.carbonation.from} - {recipe.carbonation.to}</p>
                 <hr />
