@@ -1,4 +1,8 @@
 {
   "name": "Recipes",
   "offline_enabled": true,
+  "display": "standalone",
+  "icons": [],
+  "scope": "/myapp",
+  "background_color": "#f3921e",
 }
