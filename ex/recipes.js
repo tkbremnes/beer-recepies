@@ -9,6 +9,19 @@ export default {
                 from: 2,
                 to: 3
             },
+            og: 1.058,
+            bg: 1.046,
+            fg: 1.012,
+            ibu: 55,
+            abv: 6,
+            ebc: 19,
+            volume: 20,
+            boilVolume: 25,
+            mashTemp: 65,
+            fermentationTemp: {
+                from: 19,
+                to: 21
+            },
             fermentables: [
                 {
                     name: 'Maris Otter',
@@ -92,6 +105,10 @@ export default {
                 from: 2,
                 to: 2.5
             },
+            ibu: 22,
+            abv: 5,
+            ebc: 20,
+            og: 1.045,
             "fermentables": [
                 {
                     "name": "Maris Otter",
@@ -147,6 +164,10 @@ export default {
             "id": 2,
             "source": "http://byo.com/mead/item/1868-irish-red-ale-style-profile",
             "style": "Irish red ale",
+            og: 1.045,
+            ibu: 22,
+            abv: 5,
+            ebc: 20,
             "carbonation": {
                 from: 2,
                 to: 2.5

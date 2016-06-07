@@ -8,6 +8,7 @@ import { Router, Route, browserHistory, Link } from 'react-router';
 import store from './Utils/Reducers';
 
 import Logo from './Components/Logo/index.jsx';
+import AppFooter from './Components/AppFooter/index.jsx';
 import RecipeCollection from './Components/RecipeCollection/index.jsx';
 
 import PouchDB from 'PouchDB';
@@ -18,13 +19,14 @@ window.uuid = uuid;
 class Root extends React.Component {
   render() {
     return (
-        <div>
+        <div style={ { paddingBottom: '40px' } }>
             {/*<Logo
             height="100px"
             width="100px"
             />*/}
 
             <RecipeCollection />
+            <AppFooter />
         </div>
     )
   }

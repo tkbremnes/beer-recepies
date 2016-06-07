@@ -13,7 +13,15 @@ export default {
         display: 'flex',
         flexDirection: 'column',
         padding: '0 4px 4px 8px',
-        backgroundColor: '#ededef'
+        backgroundColor: '#ededef',
+        marginBottom: '8px',
+        maxWidth: '450px',
+
+        // background: "#ededef url(/images/wheat.svg)",
+        // backgroundRepeat: "no-repeat",
+        // backgroundSize: "contain",
+        // backgroundPositionX: "50%",
+
     },
 
     ingredient: {
@@ -36,10 +44,21 @@ export default {
             paddingRight: '8px',
             flexShrink: 0,
             textAlign: 'right',
-            width: '70px',
+            width: '50px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'flex-end',
+        },
+        aa: {
+            order: 3,
+            paddingRight: '8px',
+            flexShrink: 0,
+            textAlign: 'right',
+            width: '50px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            marginRight: '8px'
         },
     },
 
