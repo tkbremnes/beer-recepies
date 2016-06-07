@@ -2,6 +2,90 @@ export default {
     "id": "collection_id",
     "recipe_collection": [
         {
+            name: "All other Pale Ales",
+            source: "Mikkeller",
+            id: 0,
+            carbonation: {
+                from: 2,
+                to: 3
+            },
+            fermentables: [
+                {
+                    name: 'Maris Otter',
+                    weight: 2800,
+                    color: 5,
+                    id: 20
+                },
+                {
+                    name: 'Munich I',
+                    weight: 800,
+                    color: 22,
+                    id: 21
+                },
+                {
+                    name: 'Cara Amber',
+                    weight: 475,
+                    color: 70,
+                    id: 22
+                },
+                {
+                    name: 'Cara Pils',
+                    weight: 325,
+                    color: 4,
+                    id: 23
+                },
+                {
+                    name: 'Flaked Oats',
+                    weight: 625,
+                    color: 4,
+                    id: 24
+                },
+            ],
+            hops: [
+                {
+                    name: "Mosaic",
+                    weight: 25,
+                    time: 60,
+                    aa: 11.7,
+                    id: 20,
+                    type: 'pellets'
+                },
+                {
+                    name: "Chinook",
+                    weight: 10,
+                    time: 10,
+                    aa: 12.8,
+                    id: 21,
+                    type: 'pellets'
+                },
+                {
+                    name: "Liberty",
+                    weight: 30,
+                    time: 1,
+                    aa: 4.1,
+                    id: 22,
+                    type: 'pellets'
+                },
+                {
+                    name: "Nugget",
+                    weight: 15,
+                    time: 1,
+                    aa: 15.3,
+                    id: 23,
+                    type: 'pellets'
+                },
+            ],
+            yeasts:  [
+                {
+                    name: "Imperial Yeast A20 Citrus"
+                }
+            ],
+        },
+
+
+
+
+        {
             "name": "Some beer name",
             "id": 1,
             "carbonation": {
