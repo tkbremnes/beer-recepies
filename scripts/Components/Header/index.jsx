@@ -3,20 +3,29 @@ import React from 'react';
 class Header extends React.Component {
     render() {
         const headerSize = {
-            "1": "24px",
-            "2": "20px",
-            "3": "16px",
-            "4": "12px",
-            "5": "10px",
-            "6": "8px"
+            "1": 24,
+            "2": 20,
+            "3": 16,
+            "4": 12,
+            "5": 10,
+            "6": 8
         }[this.props.level];
 
         const styles = {
-            fontSize: headerSize
+            fontSize: `${ headerSize }px`,
+            fontFamily: '"Slabo 27px"'
         }
 
         if (this.props.uppercase) {
             styles.textTransform = 'uppercase'
+        }
+
+        if (this.props.impact) {
+            styles.fontSize = `${ headerSize * 1.7 }px`;
+        }
+
+        if (this.props.color) {
+            styles.color = this.props.color;
         }
 
         return (

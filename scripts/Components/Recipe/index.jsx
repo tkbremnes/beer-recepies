@@ -59,19 +59,21 @@ class Recipe extends React.Component {
                 }
             },
             container: {
-                // borderTop: "3px solid #000",
-                borderBottom: "3px solid #000",
-
                 display: 'flex',
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-
-                padding: '6px 0',
+                padding: '18px 0 16px 10px',
+                backgroundColor: '#f04e0d',
+                margin: '6px 0',
+                border: '4px solid',
             },
             statsWrapper: {
                 display: 'flex',
                 flexDirection: 'row'
+            },
+            startStat: {
+                width: '60px',
             },
             stat: {
                 width: '60px',
@@ -79,6 +81,7 @@ class Recipe extends React.Component {
             },
             desc: {
                 textAlign: 'center',
+                color: 'white',
             },
             value: {
                 textAlign: 'center',
@@ -91,10 +94,12 @@ class Recipe extends React.Component {
                     <Header
                         text={ recipe.name }
                         uppercase={ true }
+                        impact={ true }
+                        color="#fff"
                     />
 
                     <div style={ SubHeaderStyle.statsWrapper }>
-                        <div style={ SubHeaderStyle.stat }>
+                        <div style={ SubHeaderStyle.startStat }>
                             <div style={ SubHeaderStyle.desc }>ABV</div>
                             <div style={ SubHeaderStyle.value }>5.4%</div>
                         </div>
@@ -124,6 +129,7 @@ class Recipe extends React.Component {
                     level={ 2 }
                     text="Ingredients"
                     uppercase={ true }
+                    impact={ true }
                 />
 
                 <FermentablesComposite
