@@ -17,9 +17,12 @@ function getTotalWeight(hops) {
 
 class HopsComposite extends React.Component {
     render() {
-        if (!this.props.hops) {
-            return <Loader />;
+        function collectionToArray(collection) {
+            return Object.keys(collection).map((key) => {
+                return collection[key]
+            });
         }
+        const hops = collectionToArray(this.props.hops);
 
         return (
             <div>
@@ -29,11 +32,11 @@ class HopsComposite extends React.Component {
                 />
 
                 <Hops
-                    hops={ this.props.hops }
+                    hops={ hops }
                 />
 
                 <Calculate
-                    totalWeight={ getTotalWeight(this.props.hops) }
+                    totalWeight={ getTotalWeight(hops) }
                 />
             </div>
         )

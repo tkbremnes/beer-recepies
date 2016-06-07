@@ -39,13 +39,21 @@ class Recipe extends React.Component {
     }
 
     render() {
-        if(!this.props.recipe.name) {
+        if(!this.props.recipe.entities) {
             return (<Loader />);
         }
 
-        const {
-            recipe
-        } = this.props;
+        function collectionToArray(collection) {
+            return Object.keys(collection).map((key) => {
+                return collection[key]
+            })[0];
+        }
+        const recipe = collectionToArray(this.props.recipe.entities.recipe);
+
+        const fermentables = this.props.recipe.entities.fermentables;
+        const hops = this.props.recipe.entities.hops;
+        const yeasts = this.props.recipe.entities.yeasts;
+        console.log(recipe);
 
         const SubHeaderStyle = {
             flavorText: {
@@ -144,15 +152,15 @@ class Recipe extends React.Component {
 
                 <FermentablesComposite
                     onFermentableAdded={ this.onFermentableAdded }
-                    fermentables={ recipe.fermentables }
+                    fermentables={ fermentables }
                 />
 
                 <HopsComposite
-                    hops={ recipe.hops }
+                    hops={ hops }
                 />
 
                 <YeastsComposite
-                    yeasts={ recipe.yeasts }
+                    yeasts={ yeasts }
                 />
 
                 <div style={ { display: 'none' } }>

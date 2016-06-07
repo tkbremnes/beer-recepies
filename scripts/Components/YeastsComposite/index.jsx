@@ -6,9 +6,13 @@ import Loader from '../Loader/index.jsx';
 
 class YeastsComposite extends React.Component {
     render() {
-        if (!this.props.yeasts) {
-            return <Loader />;
+        function collectionToArray(collection) {
+            return Object.keys(collection).map((key) => {
+                return collection[key]
+            });
         }
+        const yeasts = collectionToArray(this.props.yeasts);
+
         return (
             <div>
                 <Header
@@ -17,7 +21,7 @@ class YeastsComposite extends React.Component {
                 />
 
                 <Yeasts
-                    yeasts={ this.props.yeasts }
+                    yeasts={ yeasts }
                 />
             </div>
         )
