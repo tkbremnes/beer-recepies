@@ -12,14 +12,19 @@ import store from './Utils/Reducers';
 import Logo from './Components/Logo/index.jsx';
 import Recipe from './Components/Recipe/index.jsx';
 
+import PouchDB from 'PouchDB';
+
+import uuid from 'node-uuid';
+window.uuid = uuid;
+
 class Root extends React.Component {
   render() {
     return (
         <div>
-            <Logo
+            {/*<Logo
             height="100px"
             width="100px"
-            />
+            />*/}
 
             <Recipe />
         </div>

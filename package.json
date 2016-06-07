@@ -22,6 +22,8 @@
     "brauhaus-beerxml": "^1.0.0",
     "history": "^2.1.2",
     "localforage": "^1.4.2",
+    "node-uuid": "^1.4.7",
+    "pouchdb": "^5.4.0",
     "react": "^15.1.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.4.1",

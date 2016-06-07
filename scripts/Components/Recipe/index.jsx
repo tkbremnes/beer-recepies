@@ -15,10 +15,12 @@ import Temperature from '../Temperature/index.jsx';
 import { fetchRecipe } from '../../Utils/Actions';
 
 const Styles ={
-    container: {
+    outerContainer: {
+    },
+    innerContainer: {
         maxWidth: "640px",
         margin: "auto",
-        padding: "0 20px"
+        padding: "0 10px"
     }
 }
 
@@ -59,14 +61,11 @@ class Recipe extends React.Component {
                 }
             },
             container: {
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                padding: '18px 0 16px 10px',
+                padding: '18px 0 16px 0',
                 backgroundColor: '#f04e0d',
-                margin: '6px 0',
-                border: '4px solid',
+                marginBottom: '6px',
+                borderTop: '4px solid',
+                borderBottom: '4px solid',
             },
             statsWrapper: {
                 display: 'flex',
@@ -74,29 +73,49 @@ class Recipe extends React.Component {
             },
             startStat: {
                 width: '60px',
+                fontFamily: '"Slabo 27px"'
             },
             stat: {
                 width: '60px',
-                borderLeft: '2px solid #000'
+                borderLeft: '2px solid #000',
             },
             desc: {
                 textAlign: 'center',
                 color: 'white',
+                fontFamily: '"Slabo 27px"'
             },
             value: {
                 textAlign: 'center',
+                fontFamily: '"Slabo 27px"'
+            },
+            nameWrapper: {
+                flexGrow: 1,
+                borderBottom: '3px solid #000',
+                paddingBottom: '4px'
+            },
+            wrapperRapper: {
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                maxWidth: '640px',
+                padding: '0 10px',
+                margin: 'auto'
             }
         }
 
         return (
-            <div style={ Styles.container }>
+            <div style={ Styles.outerContainer } >
                 <div style={ SubHeaderStyle.container }>
-                    <Header
+                    <div style={ SubHeaderStyle.wrapperRapper }>
+                    <div style={ SubHeaderStyle.nameWrapper }>
+                        <Header
                         text={ recipe.name }
                         uppercase={ true }
                         impact={ true }
                         color="#fff"
-                    />
+                        />
+                    </div>
 
                     <div style={ SubHeaderStyle.statsWrapper }>
                         <div style={ SubHeaderStyle.startStat }>
@@ -112,25 +131,16 @@ class Recipe extends React.Component {
                             <div style={ SubHeaderStyle.value }>1.054</div>
                         </div>
                     </div>
+                    </div>
                 </div>
-                <p>Source: <Link href={ recipe.source } text={ "BYO" } /></p>
 
-                <BatchSize
-                    value={ 20 }
-                />
-                <p>Mash temp: <Temperature value={ 67 } /></p>
-                <p>Fermentation temp: <Temperature value={ 19 } /></p>
-                <p>Total boil time: 90 min</p>
-                <p>Style: { recipe.style }</p>
-                <p>Carb level: {recipe.carbonation.from} - {recipe.carbonation.to}</p>
-                <hr />
-
-                <Header
+            <div style={ Styles.innerContainer }>
+                {/*<Header
                     level={ 2 }
                     text="Ingredients"
                     uppercase={ true }
                     impact={ true }
-                />
+                />*/}
 
                 <FermentablesComposite
                     onFermentableAdded={ this.onFermentableAdded }
@@ -144,6 +154,21 @@ class Recipe extends React.Component {
                 <YeastsComposite
                     yeasts={ recipe.yeasts }
                 />
+
+                <div style={ { display: 'none' } }>
+
+                    <BatchSize
+                        value={ 20 }
+                    />
+
+                    <p>Source: <Link href={ recipe.source } text={ "BYO" } /></p>
+                    <p>Mash temp: <Temperature value={ 67 } /></p>
+                    <p>Fermentation temp: <Temperature value={ 19 } /></p>
+                    <p>Total boil time: 90 min</p>
+                    <p>Style: { recipe.style }</p>
+                    <p>Carb level: {recipe.carbonation.from} - {recipe.carbonation.to}</p>
+                </div>
+            </div>
             </div>
         )
     }

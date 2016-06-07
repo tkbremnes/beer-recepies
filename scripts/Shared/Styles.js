@@ -12,7 +12,7 @@ export default {
         borderTop: '2px solid #000',
         display: 'flex',
         flexDirection: 'column',
-        padding: '0 8px 8px 8px',
+        padding: '0 4px 4px 8px',
         backgroundColor: '#ededef'
     },
 
@@ -21,7 +21,7 @@ export default {
             order: 1,
             flexShrink: 0,
             textAlign: 'right',
-            width: '70px',
+            width: '50px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'flex-end',
