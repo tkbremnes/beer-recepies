@@ -1,9 +1,9 @@
 import { Schema, arrayOf, normalize } from 'normalizr';
 
 import Recipes from '../../ex/recipes.js';
-const recipe = Recipes.recipes;
+const recipes = Recipes.recipe_collection;
 
-const recipeCollectionSchema = new Schema('recipes');
+const recipeCollectionSchema = new Schema('recipe_collection', { idAttribute: 'id' });
 
 const recipeSchema = new Schema('recipe', { idAttribute: 'id' });
 
@@ -12,7 +12,7 @@ const hopSchema = new Schema('hops', { idAttribute: 'id' });
 const yeastSchema = new Schema('yeasts', { idAttribute: 'id' });
 
 recipeCollectionSchema.define({
-    recipes: arrayOf(recipeSchema)
+    recipeCollection: arrayOf(recipeSchema)
 });
 
 recipeSchema.define({
@@ -21,23 +21,34 @@ recipeSchema.define({
     yeasts: arrayOf(yeastSchema)
 });
 
-export const REQUEST_RECIPE = 'request_recipes'
-function requestRecipes() {
-  return {
-    type: REQUEST_RECIPE
-  }
-}
+export const RECEIVE_RECIPE = 'receive_recipe'
+function receiveRecipe(recipeJSON) {
+    const recipe = normalize(recipeJSON, recipeSchema);
 
-export const RECEIVE_RECIPE = 'receive_recipes'
-function receiveRecipes(recipeJSON) {
     return {
         type: RECEIVE_RECIPE,
-        recipe: normalize(recipeJSON[1], recipeSchema)
+        recipe
+    }
+}
+
+export const RECEIVE_RECIPE_COLLECTION = 'receive_recipe_collection'
+function receiveRecipeCollection(recipeJSON) {
+    const recipeCollection = normalize(recipeJSON, recipeCollectionSchema);
+    return {
+        type: RECEIVE_RECIPE_COLLECTION,
+        recipeCollection
     }
 }
 
 export function fetchRecipe() {
     return (dispatch) => {
-        return dispatch(receiveRecipes(recipe))
+        return dispatch(receiveRecipe(recipes[1])) //TODO
+    }
+}
+
+export function fetchRecipeCollection() {
+    console.log('fething...');
+    return (dispatch) => {
+        return dispatch(receiveRecipeCollection(recipes))
     }
 }

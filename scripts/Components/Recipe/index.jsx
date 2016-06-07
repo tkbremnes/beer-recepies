@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { connect } from 'react-redux';
-
 import FermentablesComposite from '../FermentablesComposite/index.jsx';
 import HopsComposite from '../HopsComposite/index.jsx';
 import YeastsComposite from '../YeastsComposite/index.jsx';
@@ -11,8 +9,6 @@ import Header from '../Header/index.jsx';
 import Loader from '../Loader/index.jsx';
 import Link from '../Link/index.jsx';
 import Temperature from '../Temperature/index.jsx';
-
-import { fetchRecipe } from '../../Utils/Actions';
 
 const Styles ={
     outerContainer: {
@@ -27,33 +23,35 @@ const Styles ={
 class Recipe extends React.Component {
     constructor(props) {
       super(props);
-      this.onFermentableAdded = this.onFermentableAdded.bind(this);
+    //   this.onFermentableAdded = this.onFermentableAdded.bind(this);
     }
 
     onFermentableAdded(fermentable) {
-        this.props.dispatch({type: 'add_fermentable', fermentable});
-    }
-
-    componentWillMount() {
-        this.props.dispatch(fetchRecipe());
+        // this.props.dispatch({type: 'add_fermentable', fermentable});
     }
 
     render() {
-        if(!this.props.recipe.entities) {
+        if(!this.props.recipe) {
             return (<Loader />);
         }
+
+        console.log(this.props.recipe);
 
         function collectionToArray(collection) {
             return Object.keys(collection).map((key) => {
                 return collection[key]
             })[0];
         }
-        const recipe = collectionToArray(this.props.recipe.entities.recipe);
+        // const recipe = collectionToArray(this.props.recipe.entities.recipe);
 
-        const fermentables = this.props.recipe.entities.fermentables;
-        const hops = this.props.recipe.entities.hops;
-        const yeasts = this.props.recipe.entities.yeasts;
-        console.log(recipe);
+        // const fermentables = this.props.recipe.entities.fermentables;
+        // const hops = this.props.recipe.entities.hops;
+        // const yeasts = this.props.recipe.entities.yeasts;
+
+        const recipe = this.props.recipe;
+        const fermentables = recipe.fermentables;
+        const hops = recipe.hops;
+        const yeasts = recipe.yeasts;
 
         const SubHeaderStyle = {
             flavorText: {
@@ -169,7 +167,7 @@ class Recipe extends React.Component {
                         value={ 20 }
                     />
 
-                    <p>Source: <Link href={ recipe.source } text={ "BYO" } /></p>
+                    {/*<p>Source: <Link href={ recipe.source } text={ "BYO" } /></p>*/}
                     <p>Mash temp: <Temperature value={ 67 } /></p>
                     <p>Fermentation temp: <Temperature value={ 19 } /></p>
                     <p>Total boil time: 90 min</p>
@@ -185,10 +183,4 @@ Recipe.propTypes = {
     // recipe: React.PropTypes.object.isRequired
 }
 
-function select(state) {
-    return {
-        recipe: state.recipe
-    }
-}
-
-export default connect(select)(Recipe);
+export default Recipe;

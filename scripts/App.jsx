@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import CreateRecipeView from './CreateRecipeView.jsx';
-import RecipeListView from './RecipeListView.jsx';
 import { Provider } from 'react-redux';
 
 import { Router, Route, browserHistory, Link } from 'react-router';
@@ -10,7 +8,7 @@ import { Router, Route, browserHistory, Link } from 'react-router';
 import store from './Utils/Reducers';
 
 import Logo from './Components/Logo/index.jsx';
-import Recipe from './Components/Recipe/index.jsx';
+import RecipeCollection from './Components/RecipeCollection/index.jsx';
 
 import PouchDB from 'PouchDB';
 
@@ -26,7 +24,7 @@ class Root extends React.Component {
             width="100px"
             />*/}
 
-            <Recipe />
+            <RecipeCollection />
         </div>
     )
   }

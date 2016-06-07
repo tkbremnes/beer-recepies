@@ -1,8 +1,13 @@
 export default {
-    "recipes": [
+    "id": "collection_id",
+    "recipe_collection": [
         {
             "name": "Some beer name",
             "id": 1,
+            "carbonation": {
+                from: 2,
+                to: 2.5
+            },
             "fermentables": [
                 {
                     "name": "Maris Otter",
