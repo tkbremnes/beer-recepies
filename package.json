@@ -20,6 +20,7 @@
   "dependencies": {
     "brauhaus": "^1.1.1",
     "brauhaus-beerxml": "^1.0.0",
+    "connect": "^3.4.1",
     "history": "^2.1.2",
     "localforage": "^1.4.2",
     "node-uuid": "^1.4.7",
@@ -31,6 +32,7 @@
     "redux": "^3.5.2",
     "redux-actions": "^0.9.1",
     "redux-thunk": "^2.1.0",
+    "serve-static": "^1.11.0",
     "underscore": "^1.8.3"
   }
 }
