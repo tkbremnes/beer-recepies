@@ -237,32 +237,32 @@ export default {
                     length: 14,
                     temperature: [69,71] //F
                 }
-            }
+            },
             carbonation: {
                 from: 2,
                 to: 2.5
             },
             fermentables: [
                 {
-                    name: 'Briess Pale Ale Malt'
+                    name: 'Briess Pale Ale Malt',
                     id: 4001,
                     weight: 3.5, // lbs
                     color: 0
                 },
                 {
-                    name: 'Briess Ashburne Mild Malt'
+                    name: 'Briess Ashburne Mild Malt',
                     id: 4002,
                     weight: 3.5, // lbs
                     color: 0
                 },
                 {
-                    name: 'Briess Caramel Malt'
+                    name: 'Briess Caramel Malt',
                     id: 4003,
                     weight: 0.5, // lbs
                     color: 80
                 },
                 {
-                    name: 'Briess Black Malt'
+                    name: 'Briess Black Malt',
                     id: 4004,
                     weight: 0.5, // oz
                     color: 0
@@ -317,27 +317,27 @@ export default {
                     length: [21, 28],
                     yeast: '1/4 packets of WLP009'
                 }
-            }
+            },
             carbonation: {
                 from: 2,
                 to: 2.5
             },
             fermentables: [
                 {
-                    name: 'CWB Golden Light Dry Malt Extract'
+                    name: 'CWB Golden Light Dry Malt Extract',
                     id: 5001,
                     weight: 12, // lbs
                     color: 0,
                     type: 'DME'
                 },
                 {
-                    name: 'Briess Aromatic Munich Malt'
+                    name: 'Briess Aromatic Munich Malt',
                     id: 5002,
                     weight: 1, // lbs
                     color: 20
                 },
                 {
-                    name: 'Briess Caramel Malt'
+                    name: 'Briess Caramel Malt',
                     id: 5003,
                     weight: 1, // lbs
                     color: 40
