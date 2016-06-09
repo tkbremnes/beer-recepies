@@ -41,4 +41,4 @@ function registerServiceWorker() {
             });
         });
 }
-// registerServiceWorker();
+registerServiceWorker();
