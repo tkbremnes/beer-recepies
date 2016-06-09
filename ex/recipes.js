@@ -214,6 +214,171 @@ export default {
                     "id": 2
                 }
             ]
-        }
+        },
+
+
+
+
+
+        {
+            name: 'Mild Child',
+            id: 400,
+            origin: 'White Labs',
+            style: 'English mild',
+            og: 1.038,
+            fg: 1.009,
+            abv: 3.7,
+            ibu: 13,
+            srm: 16,
+            mashTemp: 154, // F
+            volume: 19,
+            fermentation: {
+                primary: {
+                    length: 14,
+                    temperature: [69,71] //F
+                }
+            }
+            carbonation: {
+                from: 2,
+                to: 2.5
+            },
+            fermentables: [
+                {
+                    name: 'Briess Pale Ale Malt'
+                    id: 4001,
+                    weight: 3.5, // lbs
+                    color: 0
+                },
+                {
+                    name: 'Briess Ashburne Mild Malt'
+                    id: 4002,
+                    weight: 3.5, // lbs
+                    color: 0
+                },
+                {
+                    name: 'Briess Caramel Malt'
+                    id: 4003,
+                    weight: 0.5, // lbs
+                    color: 80
+                },
+                {
+                    name: 'Briess Black Malt'
+                    id: 4004,
+                    weight: 0.5, // oz
+                    color: 0
+                },
+            ],
+            hops: [
+                {
+                    name: "Fuggle",
+                    type: "Pellets",
+                    weight: 0.5, // oz
+                    time: 60,
+                    aa: 4.8,
+                    "id": 4000
+                },
+                {
+                    name: "Fuggle",
+                    type: "Pellets",
+                    weight: 0.5, // oz
+                    time: 10,
+                    aa: 4.8,
+                    "id": 4001
+                },
+            ],
+            yeasts: [
+                {
+                    name: 'WLP013 London Ale Yeast'
+                }
+            ]
+        },
+        {
+            name: 'One Mighty Fine Barleywine',
+            id: 501,
+            origin: 'White Labs',
+            style: 'Barleywine',
+            og: 1.105,
+            fg: 1.021,
+            abv: 11.4,
+            ibu: 90,
+            srm: 15,
+            volume: 19,
+            mashTemp: 152, // F
+            fermentation: {
+                primary: {
+                    length: 21,
+                    temperature: [66,68] // fahrenheit
+                },
+                secondary: {
+                    length: 14,
+                    temperature: [66,68] // fahrenheit
+                },
+                priming: {
+                    length: [21, 28],
+                    yeast: '1/4 packets of WLP009'
+                }
+            }
+            carbonation: {
+                from: 2,
+                to: 2.5
+            },
+            fermentables: [
+                {
+                    name: 'CWB Golden Light Dry Malt Extract'
+                    id: 5001,
+                    weight: 12, // lbs
+                    color: 0,
+                    type: 'DME'
+                },
+                {
+                    name: 'Briess Aromatic Munich Malt'
+                    id: 5002,
+                    weight: 1, // lbs
+                    color: 20
+                },
+                {
+                    name: 'Briess Caramel Malt'
+                    id: 5003,
+                    weight: 1, // lbs
+                    color: 40
+                },
+            ],
+            hops: [
+                {
+                    name: "Amarillo",
+                    type: "Pellets",
+                    weight: 1, // oz
+                    time: 60,
+                    aa: 8.5,
+                    "id": 5000
+                },
+                {
+                    name: "Amarillo",
+                    type: "Pellets",
+                    weight: 3, // oz
+                    time: 30,
+                    aa: 8.5,
+                    "id": 5000
+                },
+                {
+                    name: "Amarillo",
+                    type: "Pellets",
+                    weight: 1, // oz
+                    time: 10,
+                    aa: 8.5,
+                    "id": 5000
+                },
+            ],
+            yeasts: [
+                {
+                    name: 'WLP002 English Ale Yeast',
+                    amount: 3
+                },
+                {
+                    name: 'WLP099 Super High Gravity Ale Yeast',
+                    amount: 2
+                },
+            ]
+        },
     ]
 }
