@@ -24,9 +24,17 @@ const testData = {
 
 class FermentablesComposite extends React.Component {
     render() {
-        if (!this.props.fermentables) {
-            return <Loader />;
+        function collectionToArray(collection) {
+            return Object.keys(collection).map((key) => {
+                return collection[key]
+            });
         }
+        const fermentables = collectionToArray(this.props.fermentables);
+
+        console.log('lol');
+        console.log(fermentables);
+        console.log('lold');
+
         return (
             <div>
                 <Header
@@ -35,7 +43,7 @@ class FermentablesComposite extends React.Component {
                 />
 
                 <Fermentables
-                    fermentables={ this.props.fermentables }
+                    fermentables={ fermentables }
                 />
 
                 {/*<CreateFermentable
@@ -43,7 +51,7 @@ class FermentablesComposite extends React.Component {
                 />*/}
 
                 <Calculate
-                    totalWeight={ getTotalWeight(this.props.fermentables) }
+                    totalWeight={ getTotalWeight(fermentables) }
                 />
 
             </div>

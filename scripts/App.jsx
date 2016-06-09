@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import CreateRecipeView from './CreateRecipeView.jsx';
-import RecipeListView from './RecipeListView.jsx';
 import { Provider } from 'react-redux';
 
 import { Router, Route, browserHistory, Link } from 'react-router';
@@ -10,7 +8,8 @@ import { Router, Route, browserHistory, Link } from 'react-router';
 import store from './Utils/Reducers';
 
 import Logo from './Components/Logo/index.jsx';
-import Recipe from './Components/Recipe/index.jsx';
+import AppFooter from './Components/AppFooter/index.jsx';
+import RecipeCollection from './Components/RecipeCollection/index.jsx';
 
 import PouchDB from 'PouchDB';
 
@@ -20,13 +19,14 @@ window.uuid = uuid;
 class Root extends React.Component {
   render() {
     return (
-        <div>
+        <div style={ { paddingBottom: '40px' } }>
             {/*<Logo
             height="100px"
             width="100px"
             />*/}
 
-            <Recipe />
+            <RecipeCollection />
+            <AppFooter />
         </div>
     )
   }

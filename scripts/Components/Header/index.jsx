@@ -37,7 +37,7 @@ class Header extends React.Component {
         }
 
         return (
-            <header style={ { height: '100%' } }>
+            <header>
                 <h1 style={ styles }>{ formatText(this.props.text) }</h1>
             </header>
         )

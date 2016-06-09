@@ -5,6 +5,22 @@ html {
     font-family: Open Sans;
 }
 
+
+/* Potentially useful for full-screen launch */
+/*html {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}*/
+
 html,
 body,
 body main * {

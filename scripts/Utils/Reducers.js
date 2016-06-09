@@ -15,13 +15,32 @@ function uiState(state = {}, action, value) {
   }
 }
 
+function recipeCollection(state, action) {
+    if (!state) {
+        return {};
+    }
+
+    console.log(action);
+
+    switch (action.type) {
+        case 'receive_recipe_collection': {
+            console.log('setting...');
+            return action.recipeCollection;
+        }
+
+        default: {
+            return state;
+        }
+    }
+}
+
 function recipe(state, action) {
     if (!state) {
         return {};
     }
 
     switch (action.type) {
-        case 'receive_recipes': {
+        case 'receive_recipe': {
             return action.recipe;
         }
 
@@ -39,6 +58,7 @@ function recipe(state, action) {
 
 const brewStore = combineReducers({
   recipe,
+  recipeCollection,
   uiState
 });
 
