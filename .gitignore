@@ -2,4 +2,5 @@
 default-certificate.crt
 default-certificate.key
 /public
+bundle.js
 
