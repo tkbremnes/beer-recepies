@@ -293,7 +293,8 @@ export default {
             ]
         },
         {
-            name: 'One Mighty Fine Barleywine',
+            // name: 'One Mighty Fine Barleywine',
+            name: 'Barley-wine',
             id: 501,
             origin: 'White Labs',
             style: 'Barleywine',
