@@ -41,6 +41,7 @@ function recipe(state, action) {
 
     switch (action.type) {
         case 'receive_recipe': {
+            console.log('returning');
             return action.recipe;
         }
 

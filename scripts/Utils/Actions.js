@@ -40,9 +40,9 @@ function receiveRecipeCollection(recipeJSON) {
     }
 }
 
-export function fetchRecipe() {
+export function fetchRecipe(id) {
     return (dispatch) => {
-        return dispatch(receiveRecipe(recipes[1])) //TODO
+        return dispatch(receiveRecipe(recipes[id])) //TODO
     }
 }
 

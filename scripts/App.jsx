@@ -16,7 +16,7 @@ import store from './Utils/Reducers';
 import Logo from './Components/Logo/index.jsx';
 import AppFooter from './Components/AppFooter/index.jsx';
 import RecipeCollection from './Components/RecipeCollection/index.jsx';
-import Recipe from './Components/Recipe/index.jsx';
+import RecipeDetail from './Components/RecipeDetail/index.jsx';
 
 import PouchDB from 'PouchDB';
 
@@ -45,22 +45,6 @@ class Root extends React.Component {
   }
 }
 
-class RecipeDetail extends React.Component {
-    componentWillMount() {
-        console.log('mjau');
-    }
-
-    render() {
-        return (
-            <div style={ { paddingBottom: '40px' } }>
-            <p>Mjau</p>
-
-            <AppFooter />
-            </div>
-        )
-    }
-}
-
 class About extends React.Component {
     render() {
         return(
@@ -73,6 +57,16 @@ class NoMatch extends React.Component {
     render() {
         return(
             <div>404</div>
+        )
+    }
+}
+
+class RecipeCollection2 extends React.Component {
+    render() {
+        return (
+            <div>
+                <Link to="/recipe/1">Recipe 1</Link>
+            </div>
         )
     }
 }
@@ -90,11 +84,9 @@ ReactDOM.render(
   <Provider store={ store }>
     <Router history={ browserHistory }>
         <Route path="/" component={ Root }>
-            <Route path="recipes">
-                <IndexRoute component={ RecipeCollection } />
+            <Route path="recipes" component={ RecipeCollection2 } />
 
-                <Route path="recipe/:recipeId" component={ RecipeDetail } />
-            </Route>
+            <Route path="recipe/:recipeId" component={ RecipeDetail } />
 
             <Route path="about" component={ About } />
 
