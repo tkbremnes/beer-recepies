@@ -7,7 +7,7 @@ html {
 
 
 /* Potentially useful for full-screen launch */
-/*html {
+html {
     height: 100%;
     overflow: hidden;
 }
@@ -19,7 +19,7 @@ body {
     height: 100%;
     width: 100%;
     overflow: auto;
-}*/
+}
 
 html,
 body,

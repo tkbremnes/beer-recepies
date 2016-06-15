@@ -13,7 +13,8 @@ class Header extends React.Component {
 
         const styles = {
             fontSize: `${ headerSize }px`,
-            fontFamily: '"Slabo 27px"'
+            fontFamily: '"Slabo 27px"',
+            hyphens: 'auto',
         }
 
         if (this.props.uppercase) {

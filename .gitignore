@@ -1,4 +1,5 @@
 /node_modules
 default-certificate.crt
 default-certificate.key
+/public
 
