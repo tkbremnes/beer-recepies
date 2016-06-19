@@ -18,6 +18,8 @@ import AppFooter from './Components/AppFooter/index.jsx';
 import RecipeCollection from './Components/RecipeCollection/index.jsx';
 import RecipeDetail from './Components/RecipeDetail/index.jsx';
 
+import NavHeader from './Components/NavHeader/index.jsx';
+
 import PouchDB from 'PouchDB';
 
 import uuid from 'node-uuid';
@@ -26,20 +28,21 @@ window.uuid = uuid;
 class Root extends React.Component {
   render() {
     return (
-        <div style={ { paddingBottom: '40px' } }>
+        <div style={ { paddingBottom: '40px', paddingTop: '40px' } }>
             {/*<Logo
             height="100px"
             width="100px"
             />*/}
 
-            <nav style={{ borderBottom: '1px solid #000' }}>
-                <Link to="/about">About</Link>
-                <Link to="/recipes">Recipes</Link>
-            </nav>
+            <NavHeader />
 
-            { this.props.children }
+            <main>
 
-            <AppFooter />
+                { this.props.children }
+
+                <AppFooter />
+            </main>
+
         </div>
     )
   }
