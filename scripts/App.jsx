@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import {
     Router,
     Route,
-    browserHistory,
+    hashHistory,
     Link,
     IndexRoute
 } from 'react-router';
@@ -15,7 +15,7 @@ import store from './Utils/Reducers';
 
 import Logo from './Components/Logo/index.jsx';
 import AppFooter from './Components/AppFooter/index.jsx';
-import RecipeCollection from './Components/RecipeCollection/index.jsx';
+import RecipeCollection from './Components/RecipeCollection/index-alt.jsx';
 import RecipeDetail from './Components/RecipeDetail/index.jsx';
 
 import NavHeader from './Components/NavHeader/index.jsx';
@@ -64,16 +64,6 @@ class NoMatch extends React.Component {
     }
 }
 
-class RecipeCollection2 extends React.Component {
-    render() {
-        return (
-            <div>
-                <Link to="/recipe/1">Recipe 1</Link>
-            </div>
-        )
-    }
-}
-
 window.addEventListener('keydown', function (event) {
   if (event.code === "KeyF" && event.metaKey) {
     event.preventDefault();
@@ -85,9 +75,9 @@ window.addEventListener('keydown', function (event) {
 const rootElement = document.getElementById('container')
 ReactDOM.render(
   <Provider store={ store }>
-    <Router history={ browserHistory }>
+    <Router history={ hashHistory }>
         <Route path="/" component={ Root }>
-            <Route path="recipes" component={ RecipeCollection2 } />
+            <Route path="recipes" component={ RecipeCollection } />
 
             <Route path="recipe/:recipeId" component={ RecipeDetail } />
 

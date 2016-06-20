@@ -36,8 +36,8 @@ class Recipe extends React.Component {
 
     componentWillMount() {
         // get the recipe from the provided id
-        console.log(`Loading recipe id: ${this.props.params.id}`);
-        this.props.dispatch(fetchRecipe(1))
+        console.log(`Loading recipe id: ${this.props.params.recipeId}`);
+        this.props.dispatch(fetchRecipe(this.props.params.recipeId))
     }
 
     render() {
