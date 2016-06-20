@@ -19,6 +19,7 @@ import RecipeCollection from './Components/RecipeCollection/index-alt.jsx';
 import RecipeDetail from './Components/RecipeDetail/index.jsx';
 
 import NavHeader from './Components/NavHeader/index.jsx';
+import SideBarNav from './Components/SideBarNav/index.jsx';
 
 import PouchDB from 'PouchDB';
 
@@ -33,6 +34,8 @@ class Root extends React.Component {
             height="100px"
             width="100px"
             />*/}
+
+            {/*<SideBarNav />*/}
 
             <NavHeader />
 
