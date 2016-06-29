@@ -41,7 +41,7 @@ class Root extends React.Component {
 
             {/*<SideBarNav />*/}
 
-            <NavHeader onSideBarToggle={ onSideBarToggle } />
+            {/*<NavHeader onSideBarToggle={ onSideBarToggle } />*/}
 
             <main>
 
