@@ -19,10 +19,7 @@ body {
     height: 100%;
     width: 100%;
     overflow: auto;
-}
-
-body {
-    background: #F1F1F1;
+    background: #F1F1F1 !important;
 }
 
 html,
@@ -36,7 +33,6 @@ body main * {
     line-height: 1em;
     text-align: left;
     cursor: default;
-    color: black;
     font-size: 1em;
     -webkit-user-select: none;
 

@@ -26,6 +26,10 @@ import PouchDB from 'PouchDB';
 import uuid from 'node-uuid';
 window.uuid = uuid;
 
+function onSideBarToggle() {
+    console.log('rawr');
+}
+
 class Root extends React.Component {
   render() {
     return (
@@ -37,7 +41,7 @@ class Root extends React.Component {
 
             {/*<SideBarNav />*/}
 
-            <NavHeader />
+            <NavHeader onSideBarToggle={ onSideBarToggle } />
 
             <main>
 

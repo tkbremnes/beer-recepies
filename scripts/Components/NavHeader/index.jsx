@@ -13,8 +13,14 @@ const Style = {
 
 class NavHeader extends React.Component {
     render() {
+        console.log(this.props.onSideBarToggle);
+        this.props.onSideBarToggle();
         return (
             <nav style={ Style }>
+                <button
+                    onClick={ this.props.onSideBarToggle }
+                >Hamburger</button>
+
                 <Link to="/about">About</Link>
                 <Link to="/recipes">Recipes</Link>
 

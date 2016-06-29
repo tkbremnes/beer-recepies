@@ -8,12 +8,17 @@ const Styles = {
         width: '400px',
         height: '100%',
         background: '#FFFFFF',
-        boxShadow: '1px 0 4px rgba(0, 0, 0, .4)',
+        boxShadow: '1px 0 4px rgba(0, 0, 0, .8)',
         zIndex: 2
     },
     header: {
         height: '150px',
-        background: '#FFC107'
+        background: '#f04e0d',
+    },
+    headerText: {
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: '1.1em'
     },
     main: {
         padding: '4px 0'
@@ -21,6 +26,7 @@ const Styles = {
     link: {
         height: '80px',
         padding: '4px',
+        cursor: 'pointer'
     },
     overlay: {
         position: 'fixed',
@@ -46,12 +52,14 @@ class SideBarNav extends React.Component {
         return (
             <div style={ Styles.container }>
                 <nav style={ Styles.nav }>
-                    <header style={ Styles.header }>Some header</header>
+                    <header style={ Styles.header }>
+                        <h1 style={ Styles.headerText }></h1>
+                    </header>
 
                     <main style={ Styles.main }>
-                        <p style={ Styles.link }>Link 1</p>
-                        <p style={ Styles.link }>Link 2</p>
-                        <p style={ Styles.link }>Link 3</p>
+                        <p style={ Styles.link }>Recipes</p>
+                        <p style={ Styles.link }>Settings</p>
+                        <p style={ Styles.link }>About</p>
                     </main>
                 </nav>
 
