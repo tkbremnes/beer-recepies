@@ -54,10 +54,26 @@
                 flex-direction: column;
             }
             .link {
-                height: 80px;
-                padding: 4px;
+                height: 40px;
                 cursor: pointer;
+                display: flex;
+                text-decoration: none;
+                font-weight: bold;
+                color: #000;
+                align-items: center;
+                position: relative;
+                padding-left: calc(.5em + 15px);
+            }
+            .link:focus {
+                outline: none;
+            }
+            .link:hover::before,
+            .link:focus::before {
+                content: '▸ ';
                 display: block;
+                width: 15px;
+                position: absolute;
+                left: .5em;
             }
             .overlay {
                 position: fixed;
@@ -122,6 +138,7 @@
 
 
     <script>
+
     // navbar
     ;(() => {
         let container;
@@ -181,11 +198,26 @@
     }
     </script>
 
+    <style>
+        #ham {
+            background: #fff url(/images/ic_menu_black_24px.svg) center center no-repeat;
+            width: 40px;
+            height: 40px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, .1);
+            cursor: pointer;
+        }
+        #ham:active:hover {
+            position: relative;
+            top: 3px;
+            height: 37px;
+            margin-bottom: 3px;
+        }
+    </style>
 </head>
 <body>
     <main>
         <div>
-            <button onClick="onHamburgerClick()">H</button>
+            <button id="ham" onClick="onHamburgerClick()"></button>
             <side-navbar visible="false"></side-navbar>
         </div>
         <div id="container">
