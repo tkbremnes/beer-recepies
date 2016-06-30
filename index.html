@@ -18,13 +18,15 @@
 
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
 
+    <link rel="manifest" href='manifest.json' type='text/json'>
+
     <template id="side-navbar-template">
         <style>
             nav {
                 position: fixed;
                 top: 0;
                 left: 0;
-                width: 400px;
+                width: 260px;
                 height: 100%;
                 background: #FFFFFF;
                 box-shadow: 1px 0 4px rgba(0, 0, 0, .8);
@@ -32,6 +34,10 @@
                 transform: translateX(-102%);
                 transition: transform .3s;
                 will-change: transform;
+            }
+            .container.is-moving nav,
+            .container.is-moving .overlay {
+                transition: none;
             }
 
             .overlay {
@@ -82,8 +88,9 @@
                 z-index: 1;
                 width: 100%;
                 height: 100%;
-                background: rgba(0, 0, 0, .54);
-                transition: opacity .1s;
+                background: #000;
+                transition: opacity .3s;
+                will-change: opacity;
             }
             .container {
                 position: fixed;
@@ -93,49 +100,57 @@
                 height: 100%;
                 z-index: 99;
                 pointer-events: none;
+                transition: opacity 0s;
             }
             .container.visible {
                 pointer-events: auto;
             }
+            .container:not(.visible) {
+                transition-delay: .5s;
+                /*opacity: 0;*/
+            }
 
+            .container.visible {
+                opacity: 1;
+            }
             .container.visible nav {
                 transform: translateX(0);
             }
             .container.visible .overlay {
-                opacity: 1;
+                opacity: .54;
+            }
+
+            .slider {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 30px;
             }
         }
         </style>
 
-        <div class="container">
-            <nav>
-                <header>
-                    <h1 class="header-text"></h1>
-                </header>
 
-                <main>
-                    <a class="link" href="/#/recipes">Recipes</a>
-                    <a class="link" href="/#/settings">Settings</a>
-                    <a class="link" href="/#/about">About</a>
-                </main>
-            </nav>
+        <div>
+            <div class="container">
+                <nav>
+                    <header>
+                        <h1 class="header-text"></h1>
+                    </header>
 
-            <div class="overlay"></div>
+                    <main>
+                        <a class="link" href="/#/recipes">Recipes</a>
+                        <a class="link" href="/#/settings">Settings</a>
+                        <a class="link" href="/#/about">About</a>
+                    </main>
+                </nav>
+
+
+                <div class="overlay"></div>
+            </div>
+            <div class="slider"></div>
         </div>
     </template>
-
-    <template id="hamburger-button-template">
-        <style>
-            button {
-                z-index: 99;
-                background: pink;
-            }
-        </style>
-
-        <button>H</button>
-    </template>
-
-
 
     <script>
 
@@ -144,6 +159,8 @@
         let container;
         let root;
         let overlay;
+        let slider;
+        let nav;
         document.registerElement('side-navbar', {
             prototype: Object.create(HTMLElement.prototype, {
                 createdCallback: {
@@ -156,14 +173,78 @@
                 },
                 attachedCallback: {
                     value: function () {
+                        slider = root.querySelector('.slider');
                         container = root.querySelector('.container');
                         overlay = root.querySelector('.overlay');
-                        if (this.attributes.hasOwnProperty('visible') && this.attributes['visible'] === 'true') {
+                        nav = root.querySelector('nav');
+
+                        const maxPos = 260;
+                        function setVisible() {
                             container.classList.add('visible');
+
+                            container.addEventListener('touchstart', (ev) => {
+                                if (ev.touches[0].pageX < maxPos*0.8) {
+                                    return;
+                                }
+                                container.classList.add('is-moving');
+                                container.addEventListener('touchmove', moveMenu);
+                            });
+
+                            container.addEventListener('touchend', (ev) => {
+                                container.classList.remove('is-moving');
+                                snap(lastPos);
+                                container.removeEventListener('touchmove', moveMenu);
+                            });
+                        }
+                        function setInvisible() {
+                            container.classList.remove('visible');
                         }
 
-                        root.addEventListener('click', () => {
-                            this.attributes.visible.value = 'false';
+                        if (this.attributes.hasOwnProperty('visible') && this.attributes['visible'] === 'true') {
+                            setVisible();
+                        }
+
+                        root.addEventListener('click', setInvisible);
+
+                        let lastPos = 0;
+                        function setPos(pos) {
+                            function performMove() {
+                                overlay.style.opacity = (pos / maxPos) * 0.54;
+                                nav.style.transform = `translateX(calc(-100% + ${ pos }px))`;
+                            }
+
+                            if (pos > maxPos) {
+                                return;
+                            }
+                            lastPos = pos;
+                            window.requestAnimationFrame(performMove);
+                        }
+
+                        function moveMenu(ev) {
+                            const pos = ev.touches[0].pageX;
+                            setPos(pos);
+                        }
+
+                        function snap(pos) {
+                            nav.style.transform = '';
+                            overlay.style.opacity = '';
+                            if (pos > (maxPos * 0.5)) {
+                                setVisible();
+                            }
+                            else {
+                                setInvisible();
+                            }
+                        }
+
+                        slider.addEventListener('touchstart', () => {
+                            container.classList.add('is-moving');
+                            slider.addEventListener('touchmove', moveMenu);
+                        });
+
+                        slider.addEventListener('touchend', (ev) => {
+                            container.classList.remove('is-moving');
+                            snap(lastPos);
+                            slider.removeEventListener('touchmove', moveMenu);
                         });
                     }
                 },
