@@ -190,12 +190,16 @@
                         const maxPos = 260;
                         const maxOpacity = 0.54;
                         let lastPos = 0;
-
                         let hhhh;
 
                         function setVisible() {
+                            if (something.attributes.visible.value === 'true') {
+                                return;
+                            }
+
                             something.attributes.visible.value = 'true';
                             container.classList.add('visible');
+
                             lastPos = maxPos;
 
                             container.addEventListener('touchstart', (touchStartEvent) => {
@@ -214,12 +218,17 @@
                             });
 
                             container.addEventListener('touchend', (ev) => {
+                                hhhh = 0;
                                 container.classList.remove('is-moving');
                                 snap(lastPos);
                                 container.removeEventListener('touchmove', moveMenu);
                             });
                         }
                         function setHidden() {
+                            if (something.attributes.visible.value === 'false') {
+                                return;
+                            }
+
                             lastPos = 0;
                             something.attributes.visible.value = 'false';
                             container.classList.remove('visible');
