@@ -1,0 +1,300 @@
+<template id="side-navbar-template">
+    <style>
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 260px;
+            height: 100%;
+            background: #FFFFFF;
+            box-shadow: 1px 0 4px rgba(0, 0, 0, .8);
+            z-index: 2;
+            transform: translateX(-102%);
+            transition: transform .3s;
+            will-change: transform;
+        }
+        .container.is-moving nav,
+        .container.is-moving .overlay {
+            transition: none;
+        }
+
+        .overlay {
+            opacity: 0;
+        }
+
+        header {
+            height: 150px;
+            background: #f04e0d;
+        }
+        .header-text {
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin: 0;
+        }
+        main {
+            padding: 4px 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .link {
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            text-decoration: none;
+            font-weight: bold;
+            color: #000;
+            align-items: center;
+            position: relative;
+            padding-left: calc(.5em + 15px);
+        }
+        .link:focus {
+            outline: none;
+        }
+        .link:hover::before,
+        .link:focus::before {
+            content: '▸ ';
+            display: block;
+            width: 15px;
+            position: absolute;
+            left: .5em;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            transition: opacity .3s;
+            will-change: opacity;
+        }
+        .container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99;
+            pointer-events: none;
+            transition: opacity 0s;
+        }
+        .container.visible {
+            pointer-events: auto;
+        }
+        .container:not(.visible) {
+            transition-delay: .5s;
+            /*opacity: 0;*/
+        }
+
+        .container.visible {
+            opacity: 1;
+        }
+        .container.visible nav {
+            transform: translateX(0);
+        }
+        .container.visible .overlay {
+            opacity: .54;
+        }
+
+        .slider {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 30px;
+        }
+    }
+    </style>
+
+
+    <div>
+        <div class="container">
+            <nav>
+                <header>
+                    <h1 class="header-text"></h1>
+                </header>
+
+                <main>
+                    <a class="link" href="/#/recipes">Recipes</a>
+                    <a class="link" href="/#/inventory">Inventory</a>
+                    <a class="link" href="/#/calculators">Calculators</a>
+                    <a class="link" href="/#/help">Help</a>
+                    <a class="link" href="/#/about">About</a>
+                    <a class="link" href="/#/settings">Settings</a>
+                </main>
+            </nav>
+
+
+            <div class="overlay"></div>
+        </div>
+        <div class="slider"></div>
+    </div>
+</template>
+
+<script>
+
+;(function () { //is this the culprit?
+const context = document.currentScript.ownerDocument;
+let container;
+let root;
+let overlay;
+let slider;
+let nav;
+let something;
+
+const sideNavbarComponent = document.registerElement('side-navbar', {
+    prototype: Object.create(HTMLElement.prototype, {
+        createdCallback: {
+            value: function() {
+                const template = context.querySelector('#side-navbar-template');
+                const clone = document.importNode(template.content, true);
+                root = this.createShadowRoot();
+                root.appendChild(clone);
+                something = this;
+            }
+        },
+        attachedCallback: {
+            value: function () {
+                slider = root.querySelector('.slider');
+                container = root.querySelector('.container');
+                overlay = root.querySelector('.overlay');
+                nav = root.querySelector('nav');
+
+                if (this.attributes.hasOwnProperty('visible') && this.attributes['visible'] === 'true') {
+                    setVisible();
+                }
+
+                root.addEventListener('click', setHidden);
+
+                // window.getComputedStyle(nav).getPropertyValue('width')
+                const maxPos = 260;
+                const maxOpacity = 0.54;
+                let lastPos = 0;
+                let hhhh;
+                const inertiaDeltaConstant = 10;
+                const inertiaTimeConstantInMs = 200;
+                let touchTimeStart;
+                let touchTimeEnd;
+
+                function moveDelta(ev) {
+                    const pos = ev.touches[0].pageX;
+                    if (pos > maxPos) {
+                        return;
+                    }
+
+                    const delta = hhhh - pos;
+                    hhhh = pos;
+                    setPosDelta(lastPos, -delta);
+                }
+
+                container.addEventListener('touchstart', (touchStartEvent) => {
+                    if (something.attributes.visible.value === 'false') {
+                        return;
+                    }
+                    container.classList.add('is-moving');
+                    hhhh = 0;
+                    container.addEventListener('touchmove', moveDelta);
+                });
+
+                container.addEventListener('touchend', (ev) => {
+                    if (something.attributes.visible.value === 'false') {
+                        return;
+                    }
+                    hhhh = 0;
+                    container.classList.remove('is-moving');
+                    snap(lastPos);
+                    container.removeEventListener('touchmove', moveDelta);
+                });
+
+
+                function setVisible() {
+                    if (something.attributes.visible.value === 'true') {
+                        return;
+                    }
+
+                    something.attributes.visible.value = 'true';
+                    container.classList.add('visible');
+
+                    lastPos = maxPos;
+                }
+                function setHidden() {
+                    if (something.attributes.visible.value === 'false') {
+                        return;
+                    }
+
+                    lastPos = 0;
+                    something.attributes.visible.value = 'false';
+                    container.classList.remove('visible');
+                }
+
+                function setPosDelta(initialPos, delta) {
+                    const pos = initialPos + delta;
+                    setPos(pos);
+                }
+
+                function setPos(pos) {
+                    if (pos > maxPos) {
+                        return;
+                    }
+                    lastPos = pos;
+
+                    overlay.style.opacity = (pos / maxPos) * maxOpacity;
+                    nav.style.transform = `translateX(calc(-100% + ${ pos }px))`;
+                }
+
+                function moveMenu(ev, offset = 0) {
+                    const pos = ev.touches[0].pageX;
+                    setPos(pos + offset);
+                }
+
+                function snap(pos) {
+                    nav.style.transform = '';
+                    overlay.style.opacity = '';
+                    if (pos > (maxPos * 0.5)) {
+                        setVisible()
+                    }
+                    else {
+                        setHidden();
+                    }
+                }
+
+                slider.addEventListener('touchstart', () => {
+                    if (something.attributes.visible.value === 'true') {
+                        return;
+                    }
+
+                    container.classList.add('is-moving');
+                    slider.addEventListener('touchmove', moveMenu);
+                });
+
+                slider.addEventListener('touchend', (ev) => {
+                    if (something.attributes.visible.value === 'true') {
+                        return;
+                    }
+
+                    container.classList.remove('is-moving');
+                    snap(lastPos);
+                    slider.removeEventListener('touchmove', moveMenu);
+                });
+            }
+        },
+        attributeChangedCallback: {
+            value: function(attrName, oldVal, newVal) {
+                switch(attrName) {
+                    case 'visible': {
+                        if (newVal === 'true') {
+                            container.classList.add('visible');
+                        }
+                        else {
+                            container.classList.remove('visible');
+                        }
+                    }
+                }
+            }
+        }
+    })
+});
+})()
+</script>
