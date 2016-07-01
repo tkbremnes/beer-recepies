@@ -191,6 +191,41 @@
                         const maxOpacity = 0.54;
                         let lastPos = 0;
                         let hhhh;
+                        const inertiaDeltaConstant = 10;
+                        const inertiaTimeConstantInMs = 200;
+                        let touchTimeStart;
+                        let touchTimeEnd;
+
+                        function moveDelta(ev) {
+                            const pos = ev.touches[0].pageX;
+                            if (pos > maxPos) {
+                                return;
+                            }
+
+                            const delta = hhhh - pos;
+                            hhhh = pos;
+                            setPosDelta(lastPos, -delta);
+                        }
+
+                        container.addEventListener('touchstart', (touchStartEvent) => {
+                            if (something.attributes.visible.value === 'false') {
+                                return;
+                            }
+                            container.classList.add('is-moving');
+                            hhhh = 0;
+                            container.addEventListener('touchmove', moveDelta);
+                        });
+
+                        container.addEventListener('touchend', (ev) => {
+                            if (something.attributes.visible.value === 'false') {
+                                return;
+                            }
+                            hhhh = 0;
+                            container.classList.remove('is-moving');
+                            snap(lastPos);
+                            container.removeEventListener('touchmove', moveDelta);
+                        });
+
 
                         function setVisible() {
                             if (something.attributes.visible.value === 'true') {
@@ -201,28 +236,6 @@
                             container.classList.add('visible');
 
                             lastPos = maxPos;
-
-                            container.addEventListener('touchstart', (touchStartEvent) => {
-                                container.classList.add('is-moving');
-                                hhhh = 0;
-                                container.addEventListener('touchmove', (touchMoveEvent) => {
-                                    const pos = touchMoveEvent.touches[0].pageX;
-                                    if (pos > maxPos) {
-                                        return;
-                                    }
-
-                                    const delta = hhhh - pos;
-                                    hhhh = pos;
-                                    setPosDelta(lastPos, -delta);
-                                });
-                            });
-
-                            container.addEventListener('touchend', (ev) => {
-                                hhhh = 0;
-                                container.classList.remove('is-moving');
-                                snap(lastPos);
-                                container.removeEventListener('touchmove', moveMenu);
-                            });
                         }
                         function setHidden() {
                             if (something.attributes.visible.value === 'false') {
@@ -266,11 +279,19 @@
                         }
 
                         slider.addEventListener('touchstart', () => {
+                            if (something.attributes.visible.value === 'true') {
+                                return;
+                            }
+
                             container.classList.add('is-moving');
                             slider.addEventListener('touchmove', moveMenu);
                         });
 
                         slider.addEventListener('touchend', (ev) => {
+                            if (something.attributes.visible.value === 'true') {
+                                return;
+                            }
+
                             container.classList.remove('is-moving');
                             snap(lastPos);
                             slider.removeEventListener('touchmove', moveMenu);
