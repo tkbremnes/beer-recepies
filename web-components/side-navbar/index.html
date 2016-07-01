@@ -135,8 +135,7 @@
 
 <script>
 
-;(function () { //is this the culprit?
-const context = document.currentScript.ownerDocument;
+;(function (context) {
 let container;
 let root;
 let overlay;
@@ -296,5 +295,5 @@ const sideNavbarComponent = document.registerElement('side-navbar', {
         }
     })
 });
-})()
+})(document.currentScript.ownerDocument)
 </script>
