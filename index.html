@@ -161,6 +161,7 @@
         let overlay;
         let slider;
         let nav;
+        let something;
         document.registerElement('side-navbar', {
             prototype: Object.create(HTMLElement.prototype, {
                 createdCallback: {
@@ -169,6 +170,7 @@
                         const clone = document.importNode(t.content, true);
                         root = this.createShadowRoot();
                         root.appendChild(clone);
+                        something = this;
                     }
                 },
                 attachedCallback: {
@@ -177,40 +179,80 @@
                         container = root.querySelector('.container');
                         overlay = root.querySelector('.overlay');
                         nav = root.querySelector('nav');
+
                         if (this.attributes.hasOwnProperty('visible') && this.attributes['visible'] === 'true') {
-                            container.classList.add('visible');
+                            setVisible();
                         }
 
-                        root.addEventListener('click', () => {
-                            container.classList.remove('visible');
-                            this.attributes.visible.value = 'false';
-                        });
+                        root.addEventListener('click', setHidden);
 
+                        // window.getComputedStyle(nav).getPropertyValue('width')
                         const maxPos = 260;
+                        const maxOpacity = 0.54;
                         let lastPos = 0;
+
+                        let hhhh;
+
+                        function setVisible() {
+                            something.attributes.visible.value = 'true';
+                            container.classList.add('visible');
+                            lastPos = maxPos;
+
+                            container.addEventListener('touchstart', (touchStartEvent) => {
+                                container.classList.add('is-moving');
+                                hhhh = 0;
+                                container.addEventListener('touchmove', (touchMoveEvent) => {
+                                    const pos = touchMoveEvent.touches[0].pageX;
+                                    if (pos > maxPos) {
+                                        return;
+                                    }
+
+                                    const delta = hhhh - pos;
+                                    hhhh = pos;
+                                    setPosDelta(lastPos, -delta);
+                                });
+                            });
+
+                            container.addEventListener('touchend', (ev) => {
+                                container.classList.remove('is-moving');
+                                snap(lastPos);
+                                container.removeEventListener('touchmove', moveMenu);
+                            });
+                        }
+                        function setHidden() {
+                            lastPos = 0;
+                            something.attributes.visible.value = 'false';
+                            container.classList.remove('visible');
+                        }
+
+                        function setPosDelta(initialPos, delta) {
+                            const pos = initialPos + delta;
+                            setPos(pos);
+                        }
+
                         function setPos(pos) {
                             if (pos > maxPos) {
                                 return;
                             }
                             lastPos = pos;
 
-                            overlay.style.opacity = (pos / maxPos) * 0.54;
+                            overlay.style.opacity = (pos / maxPos) * maxOpacity;
                             nav.style.transform = `translateX(calc(-100% + ${ pos }px))`;
                         }
 
-                        function moveMenu(ev) {
+                        function moveMenu(ev, offset = 0) {
                             const pos = ev.touches[0].pageX;
-                            setPos(pos);
+                            setPos(pos + offset);
                         }
 
                         function snap(pos) {
                             nav.style.transform = '';
                             overlay.style.opacity = '';
                             if (pos > (maxPos * 0.5)) {
-                                container.classList.add('visible');
+                                setVisible()
                             }
                             else {
-                                container.classList.remove('visible');
+                                setHidden();
                             }
                         }
 
